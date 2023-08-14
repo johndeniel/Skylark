@@ -1,17 +1,15 @@
 import type { Icon } from "lucide-react"
 import { Icons } from "@/components/icons"
 
-export type NavItem = { 
-  title: string
-  href: string
-  description: string 
-  disabled?: boolean
+export interface MainNavItem  {
+  title: string;
+  href: string;
+  description: string;
+  disabled?: boolean;
 } 
 
-export type MainNavItem = NavItem
-
-export type components = {
-  mainNav: MainNavItem[]
+export interface NavItem {
+  mainNav: MainNavItem[];
 }
 
 export type SiteConfig = {

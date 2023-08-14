@@ -1,5 +1,5 @@
-import { components } from "@/types"
-export const navigationgConfig: components = {
+import { NavItem } from "@/types"
+export const navigationgConfig: NavItem = {
     mainNav: [
         {
             title: "Alert Dialog",
