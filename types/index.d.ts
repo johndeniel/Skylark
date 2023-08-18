@@ -24,6 +24,24 @@ export type LatestUpdate = {
   update: LatestUpdateType[];
 }
 
+
+
+export interface WritingItem {
+  title: string;
+  slug: string;
+  date: string;
+}
+
+export interface ViewCountItem {
+  slug: string;
+  view_count: number;
+}
+
+export interface WritingListProps {
+  items: WritingItem[];
+  viewCounts?: ViewCountItem[];
+}
+
 export type SiteConfig = {
   name: string
   description: string

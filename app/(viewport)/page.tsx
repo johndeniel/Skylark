@@ -3,15 +3,15 @@
 import React from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import LatestUpdate from "@/components/latest-update"
 import { buttonVariants } from "@/components/ui/button"
+import LatestUpdate from "@/components/latest-update"
 
+export default function Home() {
 
-
-export default async function Home() {
   return (
     <React.Fragment>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+  
+  <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href="/"
@@ -44,7 +44,8 @@ export default async function Home() {
       </section>
       
 
-     
+
+         
   
     <section className="container max-w-[74rem] space-y-6 py-8 md:py-12 lg:py-24">
     <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
@@ -54,13 +55,7 @@ export default async function Home() {
         </div>
       <LatestUpdate className="py-8" />
    </section>
-
-
-
-
-
-
-
     </React.Fragment>
-  )
+  );
 }
+

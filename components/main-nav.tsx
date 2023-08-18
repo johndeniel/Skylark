@@ -93,7 +93,7 @@ export function MainNav({ items, children }: MainNavProps) {
               <ListItem href="/docs/installation" title="Installation">
                 How to install dependencies and structure your app.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
+              <ListItem href="/typography" title="Typography">
                 Styles for headings, paragraphs, lists...etc
               </ListItem>
             </ul>
