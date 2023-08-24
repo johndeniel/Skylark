@@ -49,6 +49,7 @@ const ListItem = React.forwardRef<
   )
 })
 
+ListItem.displayName = 'ListItem'; 
 
 export function MainNav({ items, children }: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
