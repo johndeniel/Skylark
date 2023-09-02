@@ -1,40 +1,56 @@
-import { NavItem } from "@/types"
-export const navigationgConfig: NavItem = {
-    mainNav: [
-        {
-            title: "Alert Dialog",
-            href: "/docs/primitives/alert-dialog",
-            description:
-              "A modal dialog that interrupts the user with important content and expects a response.",
-          },
-          {
-            title: "Hover Card",
-            href: "/docs/primitives/hover-card",
-            description:
-              "For sighted users to preview content available behind a link.",
-          },
-          {
-            title: "Progress",
-            href: "/docs/primitives/progress",
-            description:
-              "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-          },
-          {
-            title: "Scroll-area",
-            href: "/docs/primitives/scroll-area",
-            description: "Visually or semantically separates content.",
-          },
-          {
-            title: "Tabs",
-            href: "/docs/primitives/tabs",
-            description:
-              "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-          },
-          {
-            title: "Tooltip",
-            href: "/docs/primitives/tooltip",
-            description:
-              "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-          },
+import { NavigationSection } from "@/types"
+
+export const NavigationConfig: NavigationSection = {
+  NavItem: [
+    {
+      title: "Awards and Recognition",
+      href: "/admin",
+      description: "Mollitia id voluptate, fugiat quidem amet. Debitis rerum atque tempora saepe expedita veniam error, quod dolor unique.",
+    },
+    {
+      title: "Upcoming Events",
+      href: "/user",
+      description: "Maxime consectetur rem doloremque ipsum nisi. Vel, reiciendis, minus. Veritatis earum necessitatibus, voluptatibus tempore vitae unique.",
+    },
+    {
+      title: "Local Student Council",
+      href: "/profile",
+      description: "Ipsa veniam numquam unde, aperiam harum omnis dolorum dicta quaerat animi atque esse fugit recusandae sit unique.",
+    },
+    {
+      title: "Education",
+      href: "/education",
+      description:
+        "In animi atque vel nobis dolores sit distinctio quas. Non quia ipsum dolor.",
+    },
+    {
+      title: "Engineering",
+      href: "/engineering",
+      description:
+        "Sed voluptate veniam facilis accusantium magni voluptates.",
+    },
+    {
+      title: "Hotel Management",
+      href: "/hotelmanagement",
+      description:
+        "Autem quam eveniet id magnam dolores beatae rerum quod distinctio. Minus, voluptatem, veniam necessitatibus laboriosam assumenda ipsam dolor unique.",
+    },
+    {
+      title: "Information Technology",
+      href: "/informationtechnology",
+      description: "Voluptates rem cumque esse possimus nihil. Ex quibusdam error ipsam voluptatum quam, similique dolore totam, unde sit unique.",
+    },
+    {
+      title: "Industrial Technology",
+      href: "/industrialtechnology",
+      description:
+        "Nisi fugit molestiae facilis accusantium sequi vel soluta voluptas quam, natus aut, amet labore dolorum in unique.",
+    },
+    {
+      title: "Nursing",
+      href: "/nursing",
+      description:
+        "Quisquam, eius molestiae autem deserunt est reiciendis voluptatibus neque eaque unde asperiores sequi. Inventore, non, itaque dolor unique.",
+    },
   ],
 }

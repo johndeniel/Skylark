@@ -7,6 +7,7 @@ export const siteConfig: SiteConfig = {
   url: "",
   ogImage: "",
   links: {
-    github: ""
+    portal: "https://bulsu.priisms.online/auth/login",
+    github: "https://github.com/johndeniel/Viewport"
   },
 }
