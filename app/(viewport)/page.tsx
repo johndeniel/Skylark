@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import LatestUpdate from "@/components/latest-update";
 import { siteConfig } from "@/config/site";
+import { useAuth } from "@clerk/nextjs";
 
 
 // Home component to render the main page content
 export default function Meneses() {
+  const { isLoaded, userId} = useAuth();
   return (
     <React.Fragment>
       {/* Introduction section */}
@@ -34,7 +36,7 @@ export default function Meneses() {
           </p>
           {/* Buttons */}
           <div className="space-x-4">
-            <Link href="/sign-in" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href={!isLoaded || !userId ? "/sign-in" : "/dashboard"} className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
             </Link>
             <Link
