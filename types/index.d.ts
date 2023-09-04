@@ -13,6 +13,29 @@ export type NavigationSection = {
   NavItem: NavigationItem[]; 
 };
 
+
+
+export type SidebarNavItem = {
+  title: string
+  disabled?: boolean
+  external?: boolean
+  icon?: keyof typeof Icons
+} & (
+  | {
+      href: string
+      items?: never
+    }
+  | {
+      href?: string
+      items: NavLink[]
+    }
+)
+
+export type DashboardConfig = {
+  sidebarNav: SidebarNavItem[]
+}
+
+
 export type LatestUpdateType = {
   id: number
   name: string

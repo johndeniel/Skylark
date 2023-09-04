@@ -2,13 +2,11 @@
 
 import React from "react";
 
-const User = () => {
+export default function Dashboard () {
     return (
         <React.Fragment>
-        <h1>Welcome to the User Page!</h1>
+        <h1>Welcome to the Dashboard Page!</h1>
         {/* Add any content or components specific to the Profile page here */}
         </React.Fragment>
     );
-  };
-  
-  export default User;
+};

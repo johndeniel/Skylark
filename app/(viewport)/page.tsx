@@ -3,13 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import LatestUpdate from "@/components/latest-update";
 import { siteConfig } from "@/config/site";
-import { SignIn } from '@clerk/nextjs';
+
 
 // Home component to render the main page content
-export default function Home() {
+export default function Meneses() {
   return (
     <React.Fragment>
       {/* Introduction section */}
@@ -34,7 +34,7 @@ export default function Home() {
           </p>
           {/* Buttons */}
           <div className="space-x-4">
-            <Link href="/signin" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href="/sign-in" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
             </Link>
             <Link

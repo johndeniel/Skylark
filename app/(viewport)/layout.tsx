@@ -4,13 +4,13 @@ import { NavigationConfig } from "@/config/navigation"
 import { ModeToggle } from "@/components/mode-toggle"
 
 
-interface MarketingLayoutProps {
+interface ViewportLayoutProps {
   children: React.ReactNode
 }
 
-export default async function MarketingLayout({
+export default async function ViewportLayout({
   children,
-}: MarketingLayoutProps) {
+}: ViewportLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container z-40 bg-background">

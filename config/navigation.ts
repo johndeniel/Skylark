@@ -4,17 +4,17 @@ export const NavigationConfig: NavigationSection = {
   NavItem: [
     {
       title: "Awards and Recognition",
-      href: "/admin",
+      href: "/awardsandrecognition",
       description: "Mollitia id voluptate, fugiat quidem amet. Debitis rerum atque tempora saepe expedita veniam error, quod dolor unique.",
     },
     {
       title: "Upcoming Events",
-      href: "/user",
+      href: "/upcomingevents",
       description: "Maxime consectetur rem doloremque ipsum nisi. Vel, reiciendis, minus. Veritatis earum necessitatibus, voluptatibus tempore vitae unique.",
     },
     {
       title: "Local Student Council",
-      href: "/profile",
+      href: "/localstudentcouncil",
       description: "Ipsa veniam numquam unde, aperiam harum omnis dolorum dicta quaerat animi atque esse fugit recusandae sit unique.",
     },
     {
