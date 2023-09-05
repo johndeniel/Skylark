@@ -32,11 +32,11 @@ export function DashboardNav({ items }: DashboardNavProps) {
       <div className="group flex items-center rounded-md px-3 py-2 text-sm font-medium">
         <SignedIn>
           <div className="hidden sm:block">
-            <OrganizationSwitcher afterCreateOrganizationUrl="/user" />
+            <OrganizationSwitcher afterCreateOrganizationUrl="/dashboard" />
           </div>
           <div className="block sm:hidden">
             <OrganizationSwitcher
-              afterCreateOrganizationUrl="/user"
+              afterCreateOrganizationUrl="/dashboard"
               appearance={{
                 elements: {
                   organizationSwitcherTriggerIcon: "hidden",
