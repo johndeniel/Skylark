@@ -1,11 +1,6 @@
 "use client"
 
-import {
 
-  OrganizationSwitcher,
-  SignedIn,
-  UserButton,
-} from "@clerk/nextjs";
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -30,23 +25,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
     <nav className="grid items-start gap-2">
 
       <div className="group flex items-center rounded-md px-3 py-2 text-sm font-medium">
-        <SignedIn>
-          <div className="hidden sm:block">
-            <OrganizationSwitcher afterCreateOrganizationUrl="/dashboard" />
-          </div>
-          <div className="block sm:hidden">
-            <OrganizationSwitcher
-              afterCreateOrganizationUrl="/dashboard"
-              appearance={{
-                elements: {
-                  organizationSwitcherTriggerIcon: "hidden",
-                  organizationPreviewTextContainer: "hidden",
-                  organizationSwitcherTrigger: "pr-0",
-                },
-              }}
-            />
-          </div>
-        </SignedIn>
+       
       </div>
       
 

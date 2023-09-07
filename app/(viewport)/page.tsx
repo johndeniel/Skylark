@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import LatestUpdate from "@/components/latest-update";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/viewport";
 import { useAuth } from "@clerk/nextjs";
 
 

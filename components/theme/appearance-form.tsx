@@ -1,12 +1,11 @@
 "use client"
 
-import * as React from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useTheme } from "next-themes"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import * as React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTheme } from "next-themes";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -15,33 +14,34 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+} from "@/components/ui/form";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const appearanceFormSchema = z.object({
   colorTheme: z.enum(["light", "dark"], {
     required_error: "Please select a theme.",
   }),
-})
+});
 
-type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
+type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
 export function AppearanceForm() {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme();
 
   const form = useForm<AppearanceFormValues>({
     resolver: zodResolver(appearanceFormSchema),
     defaultValues: {
       colorTheme: "dark",
     },
-  })
-  function onSubmit(data: AppearanceFormValues) {
-    setTheme(data.colorTheme)
-  }
+  });
+
+  const handleChangeTheme = (newTheme: string) => {
+    setTheme(newTheme);
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form className="space-y-8">
         <FormField
           control={form.control}
           name="colorTheme"
@@ -54,7 +54,10 @@ export function AppearanceForm() {
               <FormMessage />
               <RadioGroup
                 //@ts-ignore
-                onValueChange={field.onChange}
+                onValueChange={(value) => {
+                  field.onChange(value);
+                  handleChangeTheme(value); // Update theme instantly
+                }}
                 defaultValue={field.value}
                 className="grid max-w-md grid-cols-2 gap-8 pt-2"
               >
@@ -63,7 +66,13 @@ export function AppearanceForm() {
                     <FormControl>
                       <RadioGroupItem value="light" className="sr-only" />
                     </FormControl>
-                    <div className="items-center rounded-md border-2 border-muted p-1 hover:border-accent">
+
+
+                    <div
+                      className="items-center rounded-md border-2 border-muted p-1 hover:border-accent"
+                      onClick={() => handleChangeTheme("light")} // Update theme instantly on click
+                    >
+                
                       <div className="space-y-2 rounded-sm bg-[#ecedef] p-2">
                         <div className="space-y-2 rounded-md bg-white p-2 shadow-sm">
                           <div className="h-2 max-w-[80px] rounded-lg bg-[#ecedef]" />
@@ -89,7 +98,11 @@ export function AppearanceForm() {
                     <FormControl>
                       <RadioGroupItem value="dark" className="sr-only" />
                     </FormControl>
-                    <div className="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground">
+                    <div
+                      className="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground"
+                      onClick={() => handleChangeTheme("dark")} // Update theme instantly on click
+                    >
+                 
                       <div className="space-y-2 rounded-sm bg-slate-950 p-2">
                         <div className="space-y-2 rounded-md bg-slate-800 p-2 shadow-sm">
                           <div className="h-2 max-w-[80px] rounded-lg bg-slate-400" />
@@ -114,9 +127,7 @@ export function AppearanceForm() {
             </FormItem>
           )}
         />
-
-        <Button type="submit">Update preferences</Button>
       </form>
     </Form>
-  )
+  );
 }

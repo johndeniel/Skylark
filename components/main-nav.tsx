@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
-import { siteConfig } from "@/config/site";
 import { NavigationItem } from "@/types";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavigationConfig } from "@/config/navigation";
@@ -35,12 +34,11 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <React.Fragment>
       <section className="flex gap-6 md:gap-10">
-
         {/* Render the site logo and name */}
         <Link href="/" className="hidden items-center space-x-2 md:flex"> 
           <Icons.logo />
           <span className="hidden font-bold sm:inline-block">
-            {siteConfig.name}
+            {'Viewport'}
           </span>
         </Link>
 
@@ -63,7 +61,6 @@ export function MainNav({ items, children }: MainNavProps) {
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
                       >
-
                         {/* Render the logo, title, and description */}
                         <Icons.logo className="h-6 w-6" />
                         <div className="mb-2 mt-4 text-lg font-medium">
@@ -76,20 +73,6 @@ export function MainNav({ items, children }: MainNavProps) {
                     </NavigationMenuLink>
                   </li>
                   {NavigationConfig.NavItem.slice(0, 3).map((component) => (
-                    <ListItem key={component.title} title={component.title} href={component.href} >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            {/* Render content for the Faculty navigation item */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Faculty</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {NavigationConfig.NavItem.slice(3).map((component) => (
                     <ListItem key={component.title} title={component.title} href={component.href} >
                       {component.description}
                     </ListItem>

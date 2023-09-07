@@ -1,14 +1,8 @@
-import Link from "next/link"
-
-import { cn } from "@/lib/utils"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { AppearanceForm } from "@/components/appearance-form"
-import { buttonVariants } from "@/components/ui/button"
+import { AppearanceForm } from "@/components/theme/appearance-form"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -16,6 +10,12 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Header } from "@/components/header"
 import { Shell } from "@/components/shell"
+
+import {
+
+  OrganizationSwitcher,
+  SignedIn,
+} from "@clerk/nextjs";
 
 export const metadata = {
   title: "Settings",
@@ -51,7 +51,23 @@ export default async function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-10">
-              <h1>Not Implemented Yet!</h1>
+            <SignedIn>
+          <div className="hidden sm:block">
+            <OrganizationSwitcher afterCreateOrganizationUrl="/dashboard" />
+          </div>
+          <div className="block sm:hidden">
+            <OrganizationSwitcher
+              afterCreateOrganizationUrl="/dashboard"
+              appearance={{
+                elements: {
+                  organizationSwitcherTriggerIcon: "hidden",
+                  organizationPreviewTextContainer: "hidden",
+                  organizationSwitcherTrigger: "pr-0",
+                },
+              }}
+            />
+          </div>
+        </SignedIn>
             </CardContent>
           </Card>
         </TabsContent>
