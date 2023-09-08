@@ -1,7 +1,7 @@
 import React from "react"
-import { MainNav } from "@/components/main-nav"
+import { MainNav } from "@/components/navigation/main-nav"
 import { NavigationConfig } from "@/config/navigation"
-import { ModeToggle } from "@/components/mode-toggle"
+import { ModeToggle } from "@/components/ui/mode-toggle"
 
 
 interface ViewportLayoutProps {

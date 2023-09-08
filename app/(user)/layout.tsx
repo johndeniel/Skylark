@@ -1,6 +1,6 @@
 import React from "react"
-import { DashboardNav } from "@/components/nav"
-import { MainNav } from "@/components/main-nav"
+import { DashboardNav } from "@/components/navigation/nav"
+import { MainNav } from "@/components/navigation/main-nav"
 import { NavigationConfig } from "@/config/navigation"
 import { dashboardConfig } from "@/config/dashboard"
 

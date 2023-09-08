@@ -1,5 +1,5 @@
 import type { Icon } from "lucide-react"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/ui/icons"
 import { type } from "os";
 
 export type NavigationItem = {

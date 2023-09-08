@@ -3,9 +3,9 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
+import { Icons } from "../ui/icons";
 import { NavigationItem } from "@/types";
-import { MobileNav } from "@/components/mobile-nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
 import { NavigationConfig } from "@/config/navigation";
 import {
   NavigationMenu,

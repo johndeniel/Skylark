@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Header } from "@/components/header"
-import { Shell } from "@/components/shell"
+import { Header } from "@/components/ui/header"
+import { Shell } from "@/components/ui/shell"
+import { UserProfile } from "@clerk/nextjs"
 
 import {
 
@@ -45,6 +46,7 @@ export default async function SettingsPage() {
           <Card>
             <CardHeader>
               <CardTitle>Account</CardTitle>
+     
               <CardDescription>
                 Make changes to your account here. Click save when you&apos;re
                 done.
@@ -67,7 +69,32 @@ export default async function SettingsPage() {
               }}
             />
           </div>
+
+    
+          <div className="w-full overflow-hidden rounded-lg">
+      <UserProfile
+        appearance={{
+          variables: {
+            borderRadius: "0.25rem",
+          },
+          elements: {
+            card: "shadow-none",
+            navbar: "hidden",
+            navbarMobileMenuButton: "hidden",
+            headerTitle: "hidden",
+            headerSubtitle: "hidden",
+          },
+        }}
+        path="/dashboard/settings"
+        routing="path"
+      />
+    </div>
+
+
         </SignedIn>
+
+
+        
             </CardContent>
           </Card>
         </TabsContent>
