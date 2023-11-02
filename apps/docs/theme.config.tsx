@@ -6,7 +6,7 @@ import  { Footer } from  './src/components/footer/Footer'
 const config: DocsThemeConfig = {
   logo: <span>Skylark</span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://github.com/johndeniel/Skylark',
   },
   banner: {
     key: 'banner',
@@ -33,7 +33,7 @@ const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
   footer: {
     component: Footer,
-  },
+  }
 }
 
 export default config

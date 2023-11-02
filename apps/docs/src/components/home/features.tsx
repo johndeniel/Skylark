@@ -12,25 +12,25 @@ export const features = [
   {
     name: 'Feature-rich',
     description:
-      'Packed with powerful features like, slots, responsive variants, components composition, and more.',
+      'Packed with powerful features Tags, Categorization, Color Variants, Filter Search, and more.',
     icon: <FlashIcon className="stroke-black dark:stroke-white" />
   },
   {
-    name: 'Fully typed',
+    name: 'JSON',
     description:
-      'Auto-completion and type-safety are provided by TypeScript. No need to worry about typos.',
+      'Effortlessly manage log data with our API, using JSON for structured, accessible, and integrated insights.',
     icon: <CodeDocumentIcon className="stroke-black dark:stroke-white" />
   },
   {
     name: 'Safe',
     description:
-      'Forget about TailwindCSS style conflicts. Tailwind Variants efficiently merges conflicting styles.',
+      'Protecting Your Data with Strong Security Protocols for Confidence and Regulatory Compliance.',
     icon: <MagicIcon className="stroke-black dark:stroke-white" />
   },
   {
     name: 'Framework agnostic',
     description:
-      "Tailwind Variants is a utility library that works with any framework. It's not tied to React.",
+      "Skylark Logging API has a utility library that works with any framework. It's not tied to React.",
     icon: <ServerIcon className="stroke-black dark:stroke-white" />
   }
 ];
