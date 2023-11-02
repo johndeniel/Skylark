@@ -1,0 +1,22 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^13.4.1",
+    "nextra": "^2.11.0",
+    "nextra-theme-docs": "^2.11.0",
+    "ui": "*"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tailwind-config": "*",
+    "tsconfig": "*"
+  }
+}
