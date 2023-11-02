@@ -1,0 +1,12 @@
+{
+  "index": {
+    "title": "Skylark",
+    "type": "page",
+    "display": "hidden"
+  },
+  "": {
+    "title": "npm",
+    "type": "page",
+    "href": "https://www.npmjs.com/"
+  }
+}
