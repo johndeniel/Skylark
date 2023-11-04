@@ -18,15 +18,15 @@ export default function Meneses() {
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           {/* Link to the BulSU Portal */}
           <Link
-            href={siteConfig.links.portal}
+            href={siteConfig.links.github}
             className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
             target="_blank"
           >
-            BulSU Portal
+            GitHub
           </Link>
           {/* Main title */}
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Bulacan State University Meneses Campus
+            Skylark
           </h1>
           {/* Description */}
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
@@ -39,12 +39,12 @@ export default function Meneses() {
               Get Started
             </Link>
             <Link
-              href={siteConfig.links.github}
+              href={siteConfig.links.docs}
               target="_blank"
               rel="noreferrer"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
-              GitHub
+              Docs
             </Link>
           </div>
         </div>

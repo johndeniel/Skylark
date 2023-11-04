@@ -53,7 +53,7 @@ export type SiteConfig = {
   url: string
   ogImage: string
   links: {
-    portal: string
     github: string
+    docs: string
   }
 }
