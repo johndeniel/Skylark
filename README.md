@@ -1,5 +1,5 @@
 # Skylark Repository Logs 
-API logging serves as a comprehensive, real-time record of your digital systems. It extends beyond basic recording, offering valuable insights into requests, responses, and errors, enabling thorough analysis and optimization of system performance.
+Skylark serves as a comprehensive, real-time record of your digital systems. It extends beyond basic recording, offering valuable insights into requests, responses, and errors, enabling thorough analysis and optimization of system performance.
 
 ## What You'll Find Here
 
