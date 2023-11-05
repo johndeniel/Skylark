@@ -18,8 +18,8 @@ export const NavigationConfig: NavigationSection = {
       description: "Ipsa veniam numquam unde, aperiam harum omnis dolorum dicta quaerat animi atque esse fugit recusandae sit unique.",
     },
     {
-      title: "Lorem",
-      href: "/lorem",
+      title: "Features",
+      href: "/#features",
       description:
         "In animi atque vel nobis dolores sit distinctio quas. Non quia ipsum dolor.",
     },
