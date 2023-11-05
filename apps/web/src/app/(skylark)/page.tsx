@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { cn } from "../../lib/utils";
 import { buttonVariants } from "../../components/ui/button";
-import { siteConfig } from "../../config/viewport";
+import { siteConfig } from "../../config/skylark";
 import { useAuth } from "@clerk/nextjs";
 
 
@@ -30,8 +30,7 @@ export default function Meneses() {
           </h1>
           {/* Description */}
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            I&apos;m building a web app with Next.js 13 and open sourcing
-            everything. Follow along as we figure this out together.
+            Improve application performance and enhance its reliability by thoroughly investigating, securely storing, and meticulously analyzing logs
           </p>
           {/* Buttons */}
           <div className="space-x-4">

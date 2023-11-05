@@ -38,7 +38,7 @@ export function MainNav({ items, children }: MainNavProps) {
         <Link href="/" className="hidden items-center space-x-2 md:flex"> 
           <Icons.logo />
           <span className="hidden font-bold sm:inline-block">
-            {'Viewport'}
+            {'Skylark'}
           </span>
         </Link>
 
@@ -64,7 +64,7 @@ export function MainNav({ items, children }: MainNavProps) {
                         {/* Render the logo, title, and description */}
                         <Icons.logo className="h-6 w-6" />
                         <div className="mb-2 mt-4 text-lg font-medium">
-                          BulSU/Meneses
+                          Skylark
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
                           Accusantium alias hic quidem tempore eaque. Autem dolorem magni unique.
@@ -97,9 +97,9 @@ export function MainNav({ items, children }: MainNavProps) {
 
             {/* Render Courses Offered Button */}
             <NavigationMenuItem>
-              <Link href="/coursesoffered" legacyBehavior passHref>
+              <Link href="https://www.johndeniel.com" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Courses Offered
+                  Sponsor
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

@@ -1,7 +1,7 @@
 import { ThemeProvider } from "../components/theme/theme-provider"
 import { Inter as FontSans } from "next/font/google"
 import { ClerkProvider } from '@clerk/nextjs';
-import { siteConfig } from "../config/viewport"
+import { siteConfig } from "../config/skylark"
 import "../../globals.css"
 import {cn } from "../lib/utils"
 import localFont from "next/font/local"

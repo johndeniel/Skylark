@@ -1,7 +1,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { NavigationItem } from "../../types"
-import { siteConfig } from "../../config/viewport"
+import { siteConfig } from "../../config/skylark"
 import { cn } from "../../lib/utils"
 import { useLockBody } from "../../hooks/use-lock-body"
 import { Icons } from "../ui/icons"
