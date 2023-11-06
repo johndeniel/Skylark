@@ -1,11 +1,9 @@
 "use client"
 
-import { useRouter } from "next/router";
 import Link from "next/link";
 import type { ReactNode, ReactElement } from "react";
 import { useState } from "react";
 import cn from "classnames";
-import { ThemeSwitch } from "nextra-theme-docs";
 import VercelLogo from "./Logo";
 import type { TurboSite } from "./SiteSwitcher";
 import { useTurboSite } from "./SiteSwitcher";
@@ -185,7 +183,6 @@ export function FooterContent() {
 
 function SubmitForm() {
   const [email, setEmail] = useState("");
-  const router = useRouter();
   return (
     <form
       className="mt-4 sm:flex sm:max-w-md"
@@ -199,7 +196,7 @@ function SubmitForm() {
         })
           .then((res) => res.json())
           .then(() => {
-            return router.push("/confirm");
+            return "";
           });
         e.preventDefault();
       }}
@@ -242,7 +239,7 @@ export function Footer({ menu }: { menu?: boolean }): ReactElement {
           menu ? "flex" : "hidden"
         )}
       >
-        <ThemeSwitch />
+        
       </div>
       <hr className="dark:border-neutral-800" />
       <div

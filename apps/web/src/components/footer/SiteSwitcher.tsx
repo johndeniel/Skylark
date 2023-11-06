@@ -5,16 +5,6 @@ import Link from "next/link";
 export type TurboSite = "pack" | "repo";
 
 export function useTurboSite(): TurboSite | undefined {
-  const { pathname } = useRouter();
-
-  if (pathname.startsWith("/repo")) {
-    return "repo";
-  }
-
-  if (pathname.startsWith("/pack")) {
-    return "pack";
-  }
-
   return undefined;
 }
 
