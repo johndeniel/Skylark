@@ -24,8 +24,8 @@ export const NavigationConfig: NavigationSection = {
         "In animi atque vel nobis dolores sit distinctio quas. Non quia ipsum dolor.",
     },
     {
-      title: "Lorem",
-      href: "/lorem",
+      title: "Pricing",
+      href: "/#pricing",
       description:
         "Sed voluptate veniam facilis accusantium magni voluptates.",
     },

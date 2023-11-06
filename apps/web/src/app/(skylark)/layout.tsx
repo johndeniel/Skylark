@@ -3,7 +3,6 @@ import { MainNav } from "../../components/navigation/main-nav"
 import { NavigationConfig } from "../../config/navigation"
 import { ModeToggle } from "../../components/ui/mode-toggle"
 
-
 interface ViewportLayoutProps {
   children: React.ReactNode
 }

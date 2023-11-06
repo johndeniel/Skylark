@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 import { buttonVariants } from "../../components/ui/button";
 import { siteConfig } from "../../config/skylark";
 import { useAuth } from "@clerk/nextjs";
-
+import Pricing from '../../components/ui/pricing'
 
 // Home component to render the main page content
 export default function Meneses() {
@@ -155,6 +155,13 @@ export default function Meneses() {
             Please be advised that this project is still under development; proceed with caution as progress unfolds.
           </p>
         </div>
+      </section>
+
+      <section
+        id="pricing"
+        className="container space-y-6 md:py-12 lg:py-24"
+      > 
+      <Pricing/>
       </section>
     </React.Fragment>
   );
