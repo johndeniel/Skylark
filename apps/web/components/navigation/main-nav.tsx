@@ -97,7 +97,7 @@ export function MainNav({ items, children }: MainNavProps) {
 
             {/* Render Pricing Button */}
             <NavigationMenuItem>
-              <Link href="/coursesoffered" legacyBehavior passHref>
+              <Link href="/pricing" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Pricing
                 </NavigationMenuLink>
