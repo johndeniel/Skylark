@@ -2,6 +2,7 @@ import React from "react"
 import { MainNav } from "@/components/navigation/main-nav"
 import { NavigationConfig } from "@/config/navigation"
 import { ModeToggle } from "@/components/ui/mode-toggle"
+import { Footer } from "@/components/footer/footer"
 
 
 interface ViewportLayoutProps {
@@ -20,6 +21,7 @@ export default async function ViewportLayout({
         </div>
       </header>
       <main className="flex-1">{children}</main>
+      <Footer/>
     </div>
   )
 }
