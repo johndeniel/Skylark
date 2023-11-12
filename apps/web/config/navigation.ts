@@ -8,14 +8,20 @@ export const NavigationConfig: NavigationSection = {
       description: "Mollitia id voluptate, fugiat quidem amet. Debitis rerum atque tempora saepe expedita veniam error, quod dolor unique.",
     },
     {
-      title: "Upcoming Events",
+      title: "NPM Dependency",
       href: "/upcomingevents",
       description: "Maxime consectetur rem doloremque ipsum nisi. Vel, reiciendis, minus. Veritatis earum necessitatibus, voluptatibus tempore vitae unique.",
     },
     {
-      title: "Local Student Council",
-      href: "/localstudentcouncil",
+      title: "Skylark Framework",
+      href: "/skylarkframework",
       description: "Ipsa veniam numquam unde, aperiam harum omnis dolorum dicta quaerat animi atque esse fugit recusandae sit unique.",
+    },
+    {
+      title: "CLI Tool",
+      href: "/commandlineinterface",
+      description:
+        "Sed voluptate veniam facilis accusantium magni voluptates.",
     },
     {
       title: "Documentation",
@@ -24,20 +30,14 @@ export const NavigationConfig: NavigationSection = {
         "In animi atque vel nobis dolores sit distinctio quas. Non quia ipsum dolor.",
     },
     {
-      title: "Engineering",
-      href: "/engineering",
-      description:
-        "Sed voluptate veniam facilis accusantium magni voluptates.",
-    },
-    {
-      title: "Hotel Management",
-      href: "/hotelmanagement",
+      title: "Integration",
+      href: "/integration",
       description:
         "Autem quam eveniet id magnam dolores beatae rerum quod distinctio. Minus, voluptatem, veniam necessitatibus laboriosam assumenda ipsam dolor unique.",
     },
     {
-      title: "Information Technology",
-      href: "/informationtechnology",
+      title: "Research",
+      href: "/research",
       description: "Voluptates rem cumque esse possimus nihil. Ex quibusdam error ipsam voluptatum quam, similique dolore totam, unde sit unique.",
     },
     {
