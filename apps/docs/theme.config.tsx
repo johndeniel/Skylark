@@ -1,6 +1,6 @@
 import React from "react";
 import { DocsThemeConfig} from "nextra-theme-docs";
-
+import { useRouter } from 'next/router'
 import { tvs, Logo} from "@components";
 import { Footer } from "@components/footer/footer";
 
@@ -24,11 +24,33 @@ const config: DocsThemeConfig = {
     </div>
   ),
   project: {
-    link: "https://github.com/nextui-org/tailwind-variants",
+    link: "https://github.com/johndeniel",
   },
   chat: {
-    link: "https://discord.gg/9b6yyZKmH4",
+    link: "https://discord.com",
   },
+  banner: {
+    key: 'banner',
+    text: (
+      <a href="https://www.johndeniel.com/">
+        🎉 John Deniel 1.0 is released. Read more →
+      </a>
+    )
+  },
+  useNextSeoProps() {
+    const { route } = useRouter()
+    if (route !== '/') {
+      return {
+        titleTemplate: '%s – Skylark Docs'
+      }
+    }
+  },
+  head: (
+    <>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta property="og:title" content="Skylark"/>
+    </>
+  ),
   footer: {
     component: Footer,
   }
