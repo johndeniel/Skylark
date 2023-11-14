@@ -1,39 +1,37 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import { DocsThemeConfig } from 'nextra-theme-docs'
-import  { Footer } from  './src/components/footer/Footer'
+import React from "react";
+import { DocsThemeConfig} from "nextra-theme-docs";
+
+import { tvs, Logo} from "@components";
+import { Footer } from "@components/footer/footer";
+
+const DEFAULT_VERSION = "0.1.14";
+
 
 const config: DocsThemeConfig = {
-  logo: <span>Skylark</span>,
-  project: {
-    link: 'https://github.com/johndeniel/Skylark',
+  darkMode: true,
+  nextThemes: {
+    defaultTheme: "dark",
   },
-  banner: {
-    key: 'banner',
-    text: (
-      <a href="https://www.johndeniel.com/">
-        🎉 John Deniel 1.0 is released. Read more →
-      </a>
-    )
-  },
-  useNextSeoProps() {
-    const { route } = useRouter()
-    if (route !== '/') {
-      return {
-        titleTemplate: '%s – Skylark'
-      }
-    }
-  },
-  head: (
-    <>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta property="og:title" content="Skylark"/>
-    </>
+  logo: (
+    <div className="flex items-center">
+      <Logo height={30} />
+      <b className="ml-1.5 hidden text-sm font-semibold sm:block sm:text-base">
+        Skylark Docs
+      </b>
+      <span className={tvs.badge({ class: "hidden sm:flex" })}>
+        v{DEFAULT_VERSION}
+      </span>
+    </div>
   ),
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  project: {
+    link: "https://github.com/nextui-org/tailwind-variants",
+  },
+  chat: {
+    link: "https://discord.gg/9b6yyZKmH4",
+  },
   footer: {
     component: Footer,
   }
-}
+};
 
-export default config
+export default config;
