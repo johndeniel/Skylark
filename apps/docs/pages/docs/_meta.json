@@ -1,6 +1,13 @@
 {
   "index": "Introduction",
   "guide": "Guide",
+  "-- Installation": {
+    "type": "separator",
+    "title": "Installation"
+  },
+  "skylark": "Skylark",
+  "framework": "Framework",
+  "logs": "Log Levels",
   "-- System Design": {
     "type": "separator",
     "title": "System Design"
