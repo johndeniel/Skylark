@@ -16,9 +16,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "start": "next start"
   },
   "dependencies": {
     "@react-aria/interactions": "3.17.0",

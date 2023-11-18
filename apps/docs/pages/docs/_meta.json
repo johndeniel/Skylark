@@ -1,5 +1,6 @@
 {
   "index": "Introduction",
+  "guide": "Guide",
   "-- System Design": {
     "type": "separator",
     "title": "System Design"
