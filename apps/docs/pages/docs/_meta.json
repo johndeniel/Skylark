@@ -1,8 +1,8 @@
 {
-  "introduction": {
-    "title": "Introduction",
-      "theme": {
-      "typesetting": "article"
-    }
-  }
+  "index": "Introduction",
+  "-- System Design": {
+    "type": "separator",
+    "title": "System Design"
+  },
+  "architecture": "Architecture"
 }

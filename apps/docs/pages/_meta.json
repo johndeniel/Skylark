@@ -3,5 +3,14 @@
     "title": "Home",
     "type": "page",
     "display": "hidden"
+  },
+  "": {
+    "title": "Npm",
+    "type": "page",
+    "href": "https://www.npmjs.com/"
+  },
+  "docs": {
+    "type": "page",
+    "title": "Documentation"
   }
 }
