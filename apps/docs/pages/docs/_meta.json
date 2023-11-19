@@ -5,7 +5,6 @@
     "type": "separator",
     "title": "Installation"
   },
-  "skylark": "Skylark",
   "framework": "Framework",
   "logs": "Log Levels",
   "-- System Design": {

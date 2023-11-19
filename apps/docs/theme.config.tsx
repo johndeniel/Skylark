@@ -2,6 +2,7 @@ import React from "react";
 import { DocsThemeConfig} from "nextra-theme-docs";
 import { useRouter } from 'next/router'
 import { tvs, Logo} from "@components";
+
 import { Footer } from "@components/footer/footer";
 
 const DEFAULT_VERSION = "0.1.14";

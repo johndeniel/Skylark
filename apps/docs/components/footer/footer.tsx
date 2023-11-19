@@ -4,10 +4,10 @@ import Link from "next/link";
 import type { ReactNode, ReactElement } from "react";
 import { useState } from "react";
 import {cn} from "../../utils";
-import VercelLogo from "./logo";
 import type { TurboSite } from "./siteSwitcher";
 import { useTurboSite } from "./siteSwitcher";
 import { ThemeSwitch } from "nextra-theme-docs";
+import {Logo} from '../'
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   const classes =
@@ -32,44 +32,38 @@ function FooterHeader({ children }: { children: ReactNode }) {
 
 const navigation = {
   general: [
-    { name: "Blog", href: "/blog" },
-    { name: "Releases", href: "https://github.com/vercel/turbo/releases" },
+    { name: "Rust", href: "https://www.rust-lang.org" },
+    { name: "TypeScript", href: "https://www.typescriptlang.org" },
   ],
   repo: [
-    { name: "Documentation", href: "/repo/docs" },
-    {
-      name: "API Reference",
-      href: "/repo/docs/reference/command-line-reference",
-    },
-    { name: "FAQ", href: "/repo/docs/faq" },
+    { name: "Skylark Web", href: "https://skylark-web.vercel.app" },
+    { name: "Skylark Docs", href: "https://skylark-docs.vercel.app" },
   ],
   pack: [
-    { name: "Documentation", href: "/pack/docs" },
-    { name: "Features", href: "/pack/docs/features" },
+    { name: "Docker Hub", href: "https://hub.docker.com/u/johndeniel" },
+    { name: "Clerk", href: "https://clerk.com" },
+    { name: "Turborepo", href: "https://turbo.build/repo" },
+    { name: "Stripe", href: "https://stripe.com" },
   ],
   support: [
     {
       name: "GitHub",
-      href: "https://github.com/vercel/turbo",
+      href: "https://github.com/johndeniel/Skylark",
     },
     {
       name: "Discord",
-      href: "https://turbo.build/discord",
+      href: "https://discord.com",
     },
   ],
   company: (site: TurboSite) => [
-    { name: "Vercel", href: "https://vercel.com" },
-    {
-      name: "Open Source Software",
-      href: "https://vercel.com/oss?utm_source=turbo.build&utm_medium=referral&utm_campaign=footer-ossLink",
+    { name: "Vercel",
+      href: "https://vercel.com" 
     },
     {
-      name: "Contact Sales",
-      href: `https://vercel.com/${
-        site === "repo" ? "solutions/turborepo" : "contact/sales"
-      }?utm_source=turbo.build&utm_medium=referral&utm_campaign=footer-enterpriseLink`,
+      name: "AWS", 
+      href: "https://aws.amazon.com",
     },
-    { name: "X", href: "https://x.com/vercel" },
+  
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
@@ -99,7 +93,7 @@ export function FooterContent() {
                 </ul>
               </div>
               <div className="mt-12 md:!mt-0">
-                <FooterHeader>Turborepo</FooterHeader>
+                <FooterHeader>Skylark</FooterHeader>
                 <ul className="mt-4 space-y-1.5 list-none ml-0" role="list">
                   {navigation.repo.map((item) => (
                     <li key={item.name}>
@@ -109,7 +103,7 @@ export function FooterContent() {
                 </ul>
               </div>
               <div className="mt-12 md:!mt-0">
-                <FooterHeader>Turbopack</FooterHeader>
+                <FooterHeader>Technology</FooterHeader>
                 <ul className="mt-4 space-y-1.5 list-none ml-0" role="list">
                   {navigation.pack.map((item) => (
                     <li key={item.name}>
@@ -153,7 +147,7 @@ export function FooterContent() {
           <div className="mt-12 xl:!mt-0">
             <FooterHeader>Subscribe to our newsletter</FooterHeader>
             <p className="mt-4 text-sm text-gray-600 dark:text-[#888888]">
-              Subscribe to the Turbo newsletter and stay updated on new releases
+              Subscribe to the Skylark newsletter and stay updated on new releases
               and features, guides, and case studies.
             </p>
             <SubmitForm />
@@ -162,17 +156,8 @@ export function FooterContent() {
 
         <div className="pt-8 mt-8 sm:flex sm:items-center sm:justify-between">
           <div>
-            <a
-              className="text-current"
-              href="https://vercel.com?utm_source=turbo.build&utm_medium=referral&utm_campaign=footer-logoLink"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="vercel.com homepage"
-            >
-              <VercelLogo />
-            </a>
             <p className="mt-4 text-xs text-gray-500 dark:text-[#888888]">
-              &copy; {new Date().getFullYear()} Vercel, Inc. All rights
+              &copy; {new Date().getFullYear()} Skylark, Inc. All rights
               reserved.
             </p>
           </div>
