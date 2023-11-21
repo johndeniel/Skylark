@@ -46,23 +46,10 @@ const config: DocsThemeConfig = {
       }
     }
   },
-  head: (
-    <>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta property="og:title" content="Skylark"/>
-    </>
-  ),
   footer: {
     component: Footer,
   },
-  
-  editLink: {
-    text: 'Edit this page on GitHub →'
-  },
-  feedback: {
-    content: 'Question? Give us feedback →',
-    labels: 'feedback'
-  },
+
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {

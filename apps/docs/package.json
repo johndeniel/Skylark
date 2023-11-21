@@ -1,18 +1,7 @@
 {
   "name": "docs",
+  "version": "0.1.0",
   "private": true,
-  "license": "MIT",
-  "version": "0.0.1",
-  "description": "Tailwind variants documentation site",
-  "author": "Junior Garcia <jrgarciadev@gmail.com>",
-  "homepage": "https://github.com/nextui-org/tailwind-variants-docs#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nextui-org/tailwind-variants-docs.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nextui-org/tailwind-variants-docs/issues"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
