@@ -7,7 +7,6 @@ import { Footer } from "@components/footer/footer";
 
 const DEFAULT_VERSION = "0.1.14";
 
-
 const config: DocsThemeConfig = {
   darkMode: true,
   nextThemes: {
