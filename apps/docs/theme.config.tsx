@@ -25,8 +25,9 @@ const config: DocsThemeConfig = {
     </div>
   ),
   project: {
-    link: "https://github.com/johndeniel",
+    link: "https://github.com/johndeniel/Skylark",
   },
+  docsRepositoryBase: 'https://github.com/johndeniel/Skylark/tree/main/apps/docs',
   chat: {
     link: "https://discord.com",
   },
@@ -46,8 +47,9 @@ const config: DocsThemeConfig = {
       }
     }
   },
-  footer: {
-    component: Footer,
+  feedback: {
+    content: 'Question? Give us feedback →',
+    labels: 'feedback'
   },
 
   sidebar: {
@@ -62,6 +64,9 @@ const config: DocsThemeConfig = {
   },
   toc: {
     backToTop: true
+  },
+  footer: {
+    component: Footer,
   }
 };
 
