@@ -11,7 +11,7 @@ async fn main() {
     let app: Router<_, _> = Router::new().route("/", get(message));
 
     // run it with hyper on localhost:3000
-    axum::Server::bind(&"0.0.0.0:80".parse().unwrap())
+    axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
         .await
         .unwrap();
