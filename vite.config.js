@@ -1,13 +1,21 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
+
+const appUrl = process.env.APP_URL;
 
 export default defineConfig({
+    server: {
+        hmr: {
+            host: appUrl,
+        }
+    },
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js'
+            ],
             refresh: true,
         }),
-        tailwindcss(),
     ],
 });
