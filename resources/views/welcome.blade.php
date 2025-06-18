@@ -3,72 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" />
     <title>Skylark</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    @vite('resources/css/app.css')
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 768px) {
-            .hero-container {
-                min-height: 100vh;
-                padding-top: 4rem;
-                padding-bottom: 2rem;
-            }
-        }
-
-        .quote-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            border: 1px solid #f1f3f4;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-white text-black antialiased">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Hero Section -->
-        <div class="hero-container">
-            <div class="max-w-4xl mx-auto text-center fade-in w-full">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight mb-6 sm:mb-8 leading-tight">
-                    Open canvas for<br>
-                    <span class="font-medium italic">creative expression</span>
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4">
-                    A sanctuary for quotes, notes, and poems. Where inspiration meets expression, and creativity finds its voice.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
-                    <a href="{{ route('register') }}" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-black text-white font-medium hover:bg-gray-800 transition-colors duration-200 rounded-lg hover-lift text-center">
+<body class="bg-white text-black antialiased font-sans overflow-x-hidden">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <div class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl transform translate-x-full transition-transform duration-300" id="mobileMenuPanel">
+            <div class="flex items-center justify-between p-6 border-b border-gray-100">
+                <span class="font-display font-medium text-xl">Menu</span>
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <nav class="p-6 space-y-6">
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
+                    Explore
+                </a>
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
+                    Writers
+                </a>
+                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
+                    Collections
+                </a>
+                <div class="pt-6 border-t border-gray-100 space-y-4">
+                    <a href="{{ route('login') }}" class="block w-full px-6 py-3 text-center border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full">
+                        Sign In
+                    </a>
+                    <a href="{{ route('register') }}" class="block w-full px-6 py-3 text-center bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full">
                         Start Writing
                     </a>
-                    <a href="{{ route('login') }}" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-gray-300 text-black font-medium hover:border-black transition-colors duration-200 rounded-lg hover-lift text-center">
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/70 backdrop-blur-xl border-b border-gray-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-medium font-display text-black hover:text-gray-700 transition-colors duration-200 tracking-tight">
+                        Skylark
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                        Explore
+                    </a>
+                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                        Writers
+                    </a>
+                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                        Collections
+                    </a>
+                </nav>
+                
+                <!-- Desktop CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="{{ route('login') }}" class="hidden lg:inline-flex text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                        Sign In
+                    </a>
+                    <a href="{{ route('register') }}" class="px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 rounded-full tracking-wide">
+                        Start Writing
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-black hover:bg-gray-50 transition-colors duration-200">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Hero Section -->
+        <div class="min-h-screen flex items-center justify-center pt-20 pb-8 sm:pt-24 sm:pb-16">
+            <div class="max-w-6xl mx-auto text-center w-full">
+                <div class="mb-6 sm:mb-8">
+                    <span class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium bg-gray-50 text-gray-700 border border-gray-100 tracking-wider">
+                        <i class="fas fa-sparkles mr-2 text-gray-500"></i>
+                        <span class="hidden xs:inline">CREATIVE WRITING PLATFORM</span>
+                        <span class="xs:hidden">CREATIVE PLATFORM</span>
+                    </span>
+                </div>
+                
+                <h1 class="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight mb-6 sm:mb-8 leading-tight sm:leading-tight md:leading-tight lg:leading-tight">
+                    <span class="block">Open canvas for</span>
+                    <span class="block font-light italic text-gray-800 mt-2">
+                        creative expression
+                    </span>
+                </h1>
+                
+                <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-500 max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light px-4 sm:px-0">
+                    A sanctuary for quotes, notes, and poems. Where inspiration meets expression, and creativity finds its voice in the digital age.
+                </p>
+                
+                <div class="flex flex-col xs:flex-row gap-3 xs:gap-4 justify-center items-center max-w-sm xs:max-w-md mx-auto px-4 sm:px-0">
+                    <a href="{{ route('register') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-300 rounded-full hover:scale-105 transform text-center group tracking-wide text-sm xs:text-base">
+                        <span class="flex items-center justify-center">
+                            Start Writing
+                            <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform duration-200"></i>
+                        </span>
+                    </a>
+                    <a href="{{ route('login') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
                         Sign In
                     </a>
                 </div>
@@ -76,87 +124,127 @@
         </div>
 
         <!-- Visual Separator -->
-        <div class="max-w-4xl mx-auto mb-16 sm:mb-20">
-            <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+        <div class="max-w-6xl mx-auto mb-12 sm:mb-20">
+            <div class="relative">
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4 sm:px-6">
+                    <i class="fas fa-feather-alt text-gray-300 text-lg sm:text-xl"></i>
+                </div>
+            </div>
         </div>
 
         <!-- Quotes Section -->
-        <div class="py-16 sm:py-20">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12 sm:mb-16">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight mb-4">
+        <div class="py-12 sm:py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 sm:mb-20">
+                    <div class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium bg-gray-50 text-gray-700 mb-6 sm:mb-8 border border-gray-100 tracking-widest">
+                        <i class="fas fa-quote-left mr-2 text-gray-500"></i>
+                        <span class="hidden xs:inline">INSPIRATION GALLERY</span>
+                        <span class="xs:hidden">INSPIRATION</span>
+                    </div>
+                    <h2 class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 leading-tight px-4 sm:px-0">
                         Find your inspiration
                     </h2>
-                    <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
-                        Discover timeless wisdom and contemporary thoughts that spark creativity.
+                    <p class="text-gray-500 text-base xs:text-lg sm:text-xl max-w-3xl mx-auto font-light leading-relaxed px-4 sm:px-0">
+                        Discover timeless wisdom and contemporary thoughts that spark creativity and ignite the imagination within every writer's soul.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     <!-- Quote Card 1 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "The scariest moment is always just before you start."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — Stephen King
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            The scariest moment is always just before you start.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— Stephen King</cite>
                     </div>
 
                     <!-- Quote Card 2 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "Words have no single fixed meaning, and that is why the art of poetry is possible."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — Terry Eagleton
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            Words have no single fixed meaning, and that is why the art of poetry is possible.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— Terry Eagleton</cite>
                     </div>
 
                     <!-- Quote Card 3 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "Fill your paper with the breathings of your heart."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — William Wordsworth
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            Fill your paper with the breathings of your heart.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— William Wordsworth</cite>
                     </div>
 
                     <!-- Quote Card 4 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "A writer is someone for whom writing is more difficult than it is for other people."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — Thomas Mann
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            A writer is someone for whom writing is more difficult than it is for other people.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— Thomas Mann</cite>
                     </div>
 
                     <!-- Quote Card 5 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "Poetry is when an emotion has found its thought and the thought has found words."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — Robert Frost
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            Poetry is when an emotion has found its thought and the thought has found words.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— Robert Frost</cite>
                     </div>
 
                     <!-- Quote Card 6 -->
-                    <div class="quote-card p-6 sm:p-8 rounded-2xl hover-lift group">
-                        <div class="mb-4">
-                            <i class="fas fa-quote-left text-2xl text-gray-300 group-hover:text-gray-400 transition-colors duration-200"></i>
+                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="mb-4 sm:mb-6">
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                            </div>
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
+                                "The role of a writer is not to say what we can all say, but what we are unable to say."
+                            </blockquote>
+                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
+                                — Anaïs Nin
+                            </cite>
                         </div>
-                        <blockquote class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light italic">
-                            The role of a writer is not to say what we can all say, but what we are unable to say.
-                        </blockquote>
-                        <cite class="text-gray-600 text-sm font-medium not-italic">— Anaïs Nin</cite>
                     </div>
                 </div>
             </div>
@@ -186,5 +274,36 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenuPanel.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                mobileMenuPanel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+            
+            if (!mobileMenu.classList.contains('hidden') && 
+                !mobileMenuPanel.contains(event.target) && 
+                !event.target.closest('[onclick="toggleMobileMenu()"]')) {
+                toggleMobileMenu();
+            }
+        });
+    </script>
 </body>
 </html>
