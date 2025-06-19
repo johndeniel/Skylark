@@ -42,15 +42,15 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'sex' => ['required', 'in:Male,Female'],
             'password' => ['required', 'confirmed', Password::defaults()],
+            'pronoun' => ['required', 'in:He,She,Xe,Ze,They'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'sex' => $request->sex,
             'password' => Hash::make($request->password),
+            'pronoun' => $request->pronoun,
             'photo' => null,
         ]);
 

@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->enum('sex', ['male', 'female', 'other']);
+            $table->enum('pronoun', ['He', 'She', 'Xe', 'Ze', 'They']);
             $table->string('password');
             $table->string('photo')->nullable();
-            $table->rememberToken();
             $table->timestamps();
+        
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('username')->primary(); 
+            $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
@@ -43,8 +43,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

@@ -25,10 +25,9 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
-            'sex' => fake()->randomElement(['Male', 'Female']),
+            'pronoun' => fake()->randomElement(['He', 'She', 'Xe', 'Ze', 'They']),
             'password' => static::$password ??=  bcrypt('password'),
             'photo' => null,
-            'remember_token' => Str::random(10),
         ];
     }
 }
