@@ -22,6 +22,7 @@ class User extends AuthenticatableUser
         'username',
         'pronoun',
         'password',
+        'bio',
         'photo',
     ];
 

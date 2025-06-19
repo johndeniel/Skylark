@@ -23,11 +23,11 @@
                 </button>
             </div>
             <nav class="p-6 space-y-6">
-                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
+                <a href="{{ route('dashboard') }}" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
                     <i class="fas fa-home mr-3 text-gray-500"></i>
                     Dashboard
                 </a>
-                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
+                <a href="{{ route('profile') }}" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
                     <i class="fas fa-user mr-3 text-gray-500"></i>
                     Profile
                 </a>
@@ -58,6 +58,16 @@
                         Skylark
                     </a>
                 </div>
+
+                 <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="{{ route('dashboard') }}" class="text-sm font-medium text-black tracking-wide">
+                       Dashboard 
+                    </a>
+                    <a href="{{ route('profile') }}" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                        Profile
+                    </a>
+                </nav>
                  
                 <!-- Desktop User Menu -->
                 <div class="hidden md:flex items-center space-x-3">
@@ -77,7 +87,7 @@
                         <!-- Dropdown Menu -->
                         <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
                             <div class="p-2">
-                                <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                                <a href="{{ route('profile') }}" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-user mr-3 text-gray-500"></i>
                                     View Profile
                                 </a>
@@ -132,7 +142,7 @@
                             <i class="fas fa-plus ml-2 text-sm group-hover:rotate-90 transition-transform duration-200"></i>
                         </span>
                     </a>
-                    <a href="#" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
+                    <a href="{{ route('profile') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
                         View Profile
                     </a>
                 </div>

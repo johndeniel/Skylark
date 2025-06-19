@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->enum('pronoun', ['He', 'She', 'Xe', 'Ze', 'They']);
             $table->string('password');
+            $table->string('bio');
             $table->string('photo')->nullable();
             $table->timestamps();
         
