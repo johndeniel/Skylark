@@ -58,6 +58,11 @@
                 editModal.classList.remove('hidden');
                 // Add body scroll lock
                 document.body.style.overflow = 'hidden';
+                // Reset any previous messages
+                const messageContainer = document.getElementById('messageContainer');
+                if (messageContainer) {
+                    messageContainer.classList.add('hidden');
+                }
             } else {
                 console.error('Edit modal not found');
             }
@@ -69,6 +74,15 @@
                 editModal.classList.add('hidden');
                 // Remove body scroll lock
                 document.body.style.overflow = '';
+                // Reset form and messages
+                const editProfileForm = document.getElementById('editProfileForm');
+                const messageContainer = document.getElementById('messageContainer');
+                if (editProfileForm) {
+                    editProfileForm.reset();
+                }
+                if (messageContainer) {
+                    messageContainer.classList.add('hidden');
+                }
             }
         };
 
@@ -84,12 +98,9 @@
                 // Change color based on character count
                 const bioCharCount = document.getElementById('bioCharCount');
                 if (bioCharCount) {
-                    if (currentLength > 45) {
-                        bioCharCount.classList.add('text-orange-500');
-                        bioCharCount.classList.remove('text-gray-400');
-                    } else if (currentLength > 55) {
+                    if (currentLength > 58) {
                         bioCharCount.classList.add('text-red-500');
-                        bioCharCount.classList.remove('text-orange-500', 'text-gray-400');
+                        bioCharCount.classList.remove('text-gray-400');
                     } else {
                         bioCharCount.classList.remove('text-orange-500', 'text-red-500');
                         bioCharCount.classList.add('text-gray-400');
@@ -141,25 +152,122 @@
             });
         }
 
-        // Edit profile form functionality
+        // Edit profile form functionality - UPDATED WITH REAL AJAX
         const editProfileForm = document.getElementById('editProfileForm');
         if (editProfileForm) {
             editProfileForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const formData = new FormData(this);
-                const bio = formData.get('bio');
+                const form = this;
+                const formData = new FormData(form);
+                const saveButton = document.getElementById('saveButton');
+                const messageContainer = document.getElementById('messageContainer');
+                const messageText = document.getElementById('messageText');
                 
-                // Validate bio length
+                // Validate bio length before submission
+                const bio = formData.get('bio');
                 if (bio && bio.length > 60) {
-                    alert('Bio must be 60 characters or less');
+                    showMessage('Bio must be 60 characters or less', 'error');
                     return;
                 }
                 
-                // Here you would typically send the form data to your backend
-                // For now, we'll just show a placeholder message
-                alert('Profile update functionality would be implemented here');
-                closeEditModal();
+                // Disable button and show loading
+                if (saveButton) {
+                    saveButton.disabled = true;
+                    saveButton.textContent = 'Saving...';
+                }
+                
+                // Hide any previous messages
+                if (messageContainer) {
+                    messageContainer.classList.add('hidden');
+                }
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        showMessage(data.message, 'success');
+                        
+                        // Update the displayed user data on the page
+                        updateProfileDisplay(data.user);
+                        
+                        // Close modal after a short delay
+                        setTimeout(() => {
+                            closeEditModal();
+                        }, 1500);
+                        
+                    } else {
+                        // Show error message
+                        showMessage(data.message || 'An error occurred while updating your profile.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('An error occurred while updating your profile.', 'error');
+                })
+                .finally(() => {
+                    // Re-enable button
+                    if (saveButton) {
+                        saveButton.disabled = false;
+                        saveButton.textContent = 'Save Changes';
+                    }
+                });
+            });
+        }
+
+        // Helper function to show messages
+        function showMessage(message, type) {
+            const messageContainer = document.getElementById('messageContainer');
+            const messageText = document.getElementById('messageText');
+            
+            if (messageContainer && messageText) {
+                messageContainer.classList.remove('hidden');
+                
+                // Reset classes
+                messageText.className = 'p-3 rounded-lg text-sm';
+                
+                if (type === 'success') {
+                    messageText.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-200');
+                } else if (type === 'error') {
+                    messageText.classList.add('bg-red-100', 'text-red-800', 'border', 'border-red-200');
+                }
+                
+                messageText.textContent = message;
+            }
+        }
+
+        // Helper function to update profile display after successful update
+        function updateProfileDisplay(userData) {
+            // Update name display
+            const nameElements = document.querySelectorAll('[data-user-name]');
+            nameElements.forEach(element => {
+                element.textContent = userData.name;
+            });
+            
+            // Update username display
+            const usernameElements = document.querySelectorAll('[data-user-username]');
+            usernameElements.forEach(element => {
+                element.textContent = '@' + userData.username;
+            });
+            
+            // Update pronoun display
+            const pronounElements = document.querySelectorAll('[data-user-pronoun]');
+            pronounElements.forEach(element => {
+                element.textContent = userData.pronoun;
+            });
+            
+            // Update bio display
+            const bioElements = document.querySelectorAll('[data-user-bio]');
+            bioElements.forEach(element => {
+                element.textContent = userData.bio || 'No bio yet';
             });
         }
 

@@ -8,8 +8,8 @@
             <!-- Left Side - Profile Photo -->
             <div class="flex flex-col items-center lg:items-start flex-shrink-0">
                 <div class="relative group mb-8">
-                    @if($user->photo)
-                        <img src="{{ $user->photo }}"
+                    @if($user->photo_url)
+                        <img src="{{ $user->photo_url }}"
                             alt="Profile Photo"
                             class="w-36 h-36 lg:w-56 lg:h-56 object-cover rounded-full shadow-2xl cursor-pointer transition-all duration-500 group-hover:shadow-3xl group-hover:scale-105 border-4 border-white mx-auto lg:mx-0"
                             onclick="openPhotoModal()">
@@ -121,33 +121,49 @@
 <!-- Photo Upload Modal -->
 <div id="photoModal" class="fixed inset-0 z-50 hidden">
     <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closePhotoModal()"></div>
-    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-3xl p-6 sm:p-8 w-full max-w-md mx-4 shadow-2xl border border-gray-100">
-        <div class="flex items-center justify-between mb-6">
-            <h3 class="font-display text-xl sm:text-2xl font-light">Update Profile Photo</h3>
-            <button onclick="closePhotoModal()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200">
-                <i class="fas fa-times text-lg"></i>
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-md mx-3 sm:mx-4 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-4 sm:mb-6">
+            <h3 class="font-display text-lg sm:text-xl md:text-2xl font-light pr-2">Update Profile Photo</h3>
+            <button onclick="closePhotoModal()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200 flex-shrink-0">
+                <i class="fas fa-times text-base sm:text-lg"></i>
             </button>
         </div>
         
         <form id="photoUploadForm" enctype="multipart/form-data">
             @csrf
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-3">Choose a new photo</label>
+            <div class="mb-4 sm:mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2 sm:mb-3">Choose a new photo</label>
                 <input type="file" 
                        id="photoInput" 
                        name="photo" 
                        accept="image/*" 
-                       class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 transition-colors duration-200 file:cursor-pointer cursor-pointer">
+                       class="block w-full text-xs sm:text-sm text-gray-500 
+                              file:mr-2 sm:file:mr-4 
+                              file:py-2 sm:file:py-3 
+                              file:px-3 sm:file:px-6 
+                              file:rounded-full 
+                              file:border-0 
+                              file:text-xs sm:file:text-sm 
+                              file:font-medium 
+                              file:bg-gray-50 
+                              file:text-gray-700 
+                              hover:file:bg-gray-100 
+                              transition-colors duration-200 
+                              file:cursor-pointer 
+                              cursor-pointer">
+                <div class="mt-2 text-xs text-gray-500">
+                    Maximum file size: 5MB. Supported formats: JPG, PNG, GIF
+                </div>
             </div>
             
-            <div class="flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button type="button" 
                         onclick="closePhotoModal()" 
-                        class="flex-1 px-6 py-3 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full">
+                        class="w-full sm:flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full text-sm sm:text-base order-2 sm:order-1">
                     Cancel
                 </button>
                 <button type="submit" 
-                        class="flex-1 px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full">
+                        class="w-full sm:flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full text-sm sm:text-base order-1 sm:order-2">
                     Upload
                 </button>
             </div>
@@ -158,83 +174,87 @@
 <!-- Edit Profile Modal -->
 <div id="editModal" class="fixed inset-0 z-50 hidden">
     <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeEditModal()"></div>
-    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-3xl p-6 sm:p-8 w-full max-w-lg mx-4 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
-        <div class="flex items-center justify-between mb-6">
-            <h3 class="font-display text-xl sm:text-2xl font-light">Edit Profile</h3>
-            <button onclick="closeEditModal()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200">
-                <i class="fas fa-times text-lg"></i>
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 w-full max-w-xs sm:max-w-md mx-3 sm:mx-4 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-4 sm:mb-6">
+            <h3 class="font-display text-lg sm:text-xl md:text-2xl font-light pr-2">Edit Profile</h3>
+            <button onclick="closeEditModal()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200 flex-shrink-0">
+                <i class="fas fa-times text-base sm:text-lg"></i>
             </button>
         </div>
         
-        <form id="editProfileForm">
+        <!-- Add error/success message display -->
+        <div id="messageContainer" class="hidden mb-4">
+            <div id="messageText" class="p-3 rounded-lg text-sm"></div>
+        </div>
+        
+        <form method="POST" action="{{ route('update') }}" id="editProfileForm">
             @csrf
             @method('PUT')
             
-            <div class="space-y-6">
+            <div class="space-y-4 sm:space-y-6">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-3">Full Name</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
                     <input type="text" 
                            name="name" 
-                           value="{{ $user->name }}" 
-                           class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-colors duration-200"
-                           placeholder="Enter your full name">
+                           value="{{ auth()->user()->name ?? '' }}"
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-sm sm:text-base"
+                           required>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-3">Username</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
                     <input type="text" 
                            name="username" 
-                           value="{{ $user->username }}" 
-                           class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-colors duration-200"
-                           placeholder="@username">
+                           value="{{ auth()->user()->username ?? '' }}"
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-sm sm:text-base"
+                           required>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-3">Pronouns</label>
-                    <select name="pronoun" 
-                            class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-colors duration-200">
-                        <option value="">Select pronouns</option>
-                        <option value="he/him" {{ $user->pronoun == 'he/him' ? 'selected' : '' }}>he/him</option>
-                        <option value="she/her" {{ $user->pronoun == 'she/her' ? 'selected' : '' }}>she/her</option>
-                        <option value="they/them" {{ $user->pronoun == 'they/them' ? 'selected' : '' }}>they/them</option>
-                        <option value="other" {{ $user->pronoun == 'other' ? 'selected' : '' }}>other</option>
-                    </select>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Pronouns</label>
+                    <div class="relative">
+                        <select name="pronoun" 
+                                class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-sm sm:text-base appearance-none bg-white cursor-pointer"
+                                required>
+                            <option value="He" {{ (auth()->user()->pronoun ?? '') === 'He' ? 'selected' : '' }}>He</option>
+                            <option value="She" {{ (auth()->user()->pronoun ?? '') === 'She' ? 'selected' : '' }}>She</option>
+                            <option value="Xe" {{ (auth()->user()->pronoun ?? '') === 'Xe' ? 'selected' : '' }}>Xe</option>
+                            <option value="Ze" {{ (auth()->user()->pronoun ?? '') === 'Ze' ? 'selected' : '' }}>Ze</option>
+                            <option value="They" {{ (auth()->user()->pronoun ?? '') === 'They' ? 'selected' : '' }}>They</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Enhanced Bio Field -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-3">
-                        Bio
-                        <span class="text-xs text-gray-500 font-normal ml-1">(Tell your professional story)</span>
-                    </label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
                     <textarea name="bio" 
-                              rows="4" 
+                              rows="3" 
                               maxlength="60"
-                              class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent transition-colors duration-200 resize-none"
-                              placeholder="Share your professional background, interests, or what drives your creativity. This helps others understand your unique perspective and expertise.">{{ $user->bio }}</textarea>
-                    <div class="flex justify-between items-center mt-2">
-                        <p class="text-xs text-gray-500">
-                            Make it engaging and professional
-                        </p>
-                        <p class="text-xs text-gray-400" id="bioCharCount">
-                            <span id="currentCount">{{ strlen($user->bio ?? '') }}</span>/60
-                        </p>
+                              placeholder="Tell us about yourself..."
+                              class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none text-sm sm:text-base">{{ auth()->user()->bio ?? '' }}</textarea>
+                    <div id="bioCharCount" class="flex justify-end mt-1 text-xs text-gray-400">
+                        <span id="currentCount">{{ strlen(auth()->user()->bio ?? '') }}</span>/60
                     </div>
                 </div>
             </div>
             
-            <div class="flex gap-3 mt-8">
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-6 sm:mt-8">
                 <button type="button" 
                         onclick="closeEditModal()" 
-                        class="flex-1 px-6 py-3 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full">
+                        class="w-full sm:flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full text-sm sm:text-base order-2 sm:order-1">
                     Cancel
                 </button>
                 <button type="submit" 
-                        class="flex-1 px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full">
+                        id="saveButton"
+                        class="w-full sm:flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full text-sm sm:text-base order-1 sm:order-2">
                     Save Changes
                 </button>
             </div>
         </form>
     </div>
 </div>
-

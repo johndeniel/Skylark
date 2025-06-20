@@ -2,77 +2,49 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use MongoDB\Laravel\Auth\User as AuthenticatableUser;
 use Illuminate\Notifications\Notifiable;
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use MongoDB\Laravel\Auth\User as AuthenticatableUser;
 
 class User extends AuthenticatableUser
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $primaryKey = 'userid';
+    public $incrementing = false; 
+    protected $keyType = 'string'; 
+
     protected $fillable = [
+        'userid',
         'name',
         'username',
         'pronoun',
         'password',
         'bio',
-        'photo',
+        'photo_url',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+    public function getPhotoUrlAttribute($value): ?string
     {
-        return [
-            'password' => 'hashed',
-        ];
+        return $value;
     }
 
-    /**
-     * Get the user's photo URL.
-     */
-    public function getPhotoUrlAttribute(): ?string
+    public function getAuthIdentifierName(): string
     {
-        return $this->photo ? asset('storage/photos/' . $this->photo) : null;
+        return 'userid'; 
     }
 
-    /**
-     * Get the name of the unique identifier for the user.
-     *
-     * @return string
-     */
-    public function getAuthIdentifierName()
+    public function getAuthIdentifier(): mixed
     {
-        return 'username';
-    }
-
-    /**
-     * Get the unique identifier key for the user.
-     *
-     * @return mixed
-     */
-    public function getAuthIdentifier()
-    {
-        return $this->username;
+        return $this->userid; 
     }
 }

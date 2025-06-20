@@ -11,9 +11,10 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * The hashed password used by the factory.
+     * Original password: Password123
      */
-    protected static ?string $password;
+    protected static ?string $password = '$2y$12$GI5DDYLlhb4B7RCfF0wj4OLAvAcROTH86/HHToz.IjwZxjOMIq7uK';
 
     /**
      * Define the model's default state.
@@ -23,12 +24,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'userid' => Str::uuid()->toString(),
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'pronoun' => fake()->randomElement(['He', 'She', 'Xe', 'Ze', 'They']),
-            'password' => static::$password ??= '$2y$12$GI5DDYLlhb4B7RCfF0wj4OLAvAcROTH86/HHToz.IjwZxjOMIq7uK',
+            'password' => static::$password,
             'bio' => fake()->sentence(),
-            'photo' => null,
+            'photo_url' => 'https://ui-avatars.com/api/?name=' . urlencode(fake()->name()),
         ];
     }
 }

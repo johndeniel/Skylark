@@ -59,8 +59,8 @@
             <div class="hidden md:flex items-center space-x-3">
                 <div class="relative group">
                     <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                        @if(auth()->user()->photo)
-                            <img class="w-8 h-8 rounded-full object-cover" src="{{ auth()->user()->photo }}" alt="Profile">
+                        @if(auth()->user()->photo_url)
+                            <img class="w-8 h-8 rounded-full object-cover" src="{{ auth()->user()->photo_url }}" alt="Profile">
                         @else
                             <div class="w-8 h-8 rounded-full bg-black flex items-center justify-center">
                                 <span class="text-white text-sm font-medium">{{ substr(auth()->user()->name, 0, 1) }}</span>
