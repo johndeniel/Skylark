@@ -73,8 +73,8 @@
                 <div class="hidden md:flex items-center space-x-3">
                     <div class="relative group">
                         <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                            @if(auth()->user()->photo_url)
-                                <img class="w-8 h-8 rounded-full object-cover" src="{{ auth()->user()->photo_url }}" alt="Profile">
+                            @if(auth()->user()->photo)
+                                <img class="w-8 h-8 rounded-full object-cover" src="{{ auth()->user()->photo }}" alt="Profile">
                             @else
                                 <div class="w-8 h-8 rounded-full bg-black flex items-center justify-center">
                                     <span class="text-white text-sm font-medium">{{ substr(auth()->user()->name, 0, 1) }}</span>
@@ -87,15 +87,6 @@
                         <!-- Dropdown Menu -->
                         <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
                             <div class="p-2">
-                                <a href="{{ route('profile') }}" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                                    <i class="fas fa-user mr-3 text-gray-500"></i>
-                                    View Profile
-                                </a>
-                                <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                                    <i class="fas fa-cog mr-3 text-gray-500"></i>
-                                    Settings
-                                </a>
-                                <hr class="my-2 border-gray-100">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="flex items-center w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200">
@@ -117,48 +108,6 @@
     </header>
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20">
-        <!-- Welcome Section -->
-        <div class="py-8 sm:py-12">
-            <div class="max-w-4xl">
-                <div class="mb-4">
-                    <span class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium bg-gray-50 text-gray-700 border border-gray-100 tracking-wider">
-                        <i class="fas fa-feather-alt mr-2 text-gray-500"></i>
-                        CREATIVE WORKSPACE
-                    </span>
-                </div>
-                
-                <h1 class="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-light mb-4 sm:mb-6 leading-tight">
-                    Welcome back, <span class="italic text-gray-800">{{ auth()->user()->name }}</span>
-                </h1>
-                
-                <p class="text-lg sm:text-xl text-gray-500 max-w-3xl font-light leading-relaxed mb-6 sm:mb-8">
-                    Your sanctuary for creative expression awaits. Discover inspiration, share your thoughts, and connect with fellow writers.
-                </p>
-                
-                <div class="flex flex-col xs:flex-row gap-3 xs:gap-4 max-w-sm xs:max-w-md">
-                    <a href="#" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-300 rounded-full hover:scale-105 transform text-center group tracking-wide text-sm xs:text-base">
-                        <span class="flex items-center justify-center">
-                            Start Creating
-                            <i class="fas fa-plus ml-2 text-sm group-hover:rotate-90 transition-transform duration-200"></i>
-                        </span>
-                    </a>
-                    <a href="{{ route('profile') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
-                        View Profile
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Visual Separator -->
-        <div class="max-w-6xl mx-auto mb-12 sm:mb-16">
-            <div class="relative">
-                <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4 sm:px-6">
-                    <i class="fas fa-heart text-gray-300 text-lg sm:text-xl"></i>
-                </div>
-            </div>
-        </div>
-
         <!-- Content Feed -->
         <div class="py-8 sm:py-12">
             <div class="max-w-7xl mx-auto">
@@ -171,22 +120,6 @@
                             <p class="text-gray-500 text-base xs:text-lg font-light">
                                 Latest inspiration from the Skylark community
                             </p>
-                        </div>
-                        
-                        <!-- Filter Tabs -->
-                        <div class="flex items-center bg-gray-50 rounded-full p-1 border border-gray-100">
-                            <button class="px-4 py-2 text-sm font-medium bg-white text-black rounded-full shadow-sm border border-gray-200 transition-all duration-200">
-                                All
-                            </button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200">
-                                Quotes
-                            </button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200">
-                                Notes
-                            </button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200">
-                                Poems
-                            </button>
                         </div>
                     </div>
                 </div>

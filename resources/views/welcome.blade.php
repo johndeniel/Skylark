@@ -24,9 +24,6 @@
             </div>
             <nav class="p-6 space-y-6">
                 <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
-                    Explore
-                </a>
-                <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
                     Writers
                 </a>
                 <a href="#" class="block text-lg font-medium text-gray-700 hover:text-black transition-colors duration-200">
@@ -57,9 +54,6 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
-                        Explore
-                    </a>
                     <a href="#" class="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
                         Writers
                     </a>
