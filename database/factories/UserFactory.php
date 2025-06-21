@@ -27,8 +27,8 @@ class UserFactory extends Factory
             'userid' => Str::uuid()->toString(),
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
-            'pronoun' => fake()->randomElement(['He', 'She', 'Xe', 'Ze', 'They']),
             'password' => static::$password,
+            'pronoun' => fake()->randomElement(['He', 'She', 'Xe', 'Ze', 'They']),
             'bio' => fake()->sentence(),
             'photo_url' => 'https://ui-avatars.com/api/?name=' . urlencode(fake()->name()),
         ];

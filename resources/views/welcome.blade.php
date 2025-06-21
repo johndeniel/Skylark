@@ -30,10 +30,10 @@
                     Collections
                 </a>
                 <div class="pt-6 border-t border-gray-100 space-y-4">
-                    <a href="{{ route('login') }}" class="block w-full px-6 py-3 text-center border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full">
+                    <a href="{{ route('index.signin') }}" class="block w-full px-6 py-3 text-center border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 rounded-full">
                         Sign In
                     </a>
-                    <a href="{{ route('register') }}" class="block w-full px-6 py-3 text-center bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full">
+                    <a href="{{ route('index.signup') }}" class="block w-full px-6 py-3 text-center bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 rounded-full">
                         Start Writing
                     </a>
                 </div>
@@ -64,10 +64,10 @@
                 
                 <!-- Desktop CTA Buttons -->
                 <div class="hidden md:flex items-center space-x-3">
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
+                    <a href="{{ route('index.signin') }}" class="hidden lg:inline-flex text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 tracking-wide">
                         Sign In
                     </a>
-                    <a href="{{ route('register') }}" class="px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 rounded-full tracking-wide">
+                    <a href="{{ route('index.signup') }}" class="px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 rounded-full tracking-wide">
                         Start Writing
                     </a>
                 </div>
@@ -104,13 +104,13 @@
                 </p>
                 
                 <div class="flex flex-col xs:flex-row gap-3 xs:gap-4 justify-center items-center max-w-sm xs:max-w-md mx-auto px-4 sm:px-0">
-                    <a href="{{ route('register') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-300 rounded-full hover:scale-105 transform text-center group tracking-wide text-sm xs:text-base">
+                    <a href="{{ route('index.signup') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 bg-black text-white font-medium hover:bg-gray-800 transition-all duration-300 rounded-full hover:scale-105 transform text-center group tracking-wide text-sm xs:text-base">
                         <span class="flex items-center justify-center">
                             Start Writing
                             <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform duration-200"></i>
                         </span>
                     </a>
-                    <a href="{{ route('login') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
+                    <a href="{{ route('index.signin') }}" class="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform text-center tracking-wide text-sm xs:text-base">
                         Sign In
                     </a>
                 </div>

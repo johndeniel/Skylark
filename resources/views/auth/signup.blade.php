@@ -20,7 +20,7 @@
             <div class="text-center mb-8 sm:mb-10">
                 <h1 class="mt-8 lg:mt-12 text-2xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 via-black to-gray-900 bg-clip-text text-transparent leading-tight tracking-tight lg:tracking-wide lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis"
                     style="font-family: 'Playfair Display', serif;">
-                    Begin your journey
+                    Begin your writing
                 </h1>
                 <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mt-4"></div>
             </div>
@@ -28,7 +28,7 @@
             <div class="bg-white border border-gray-100 p-4 sm:p-6 rounded-xl transition-all duration-500 hover:border-gray-200 hover:shadow-lg hover:-translate-y-0.5 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-xl"></div>
 
-                <form class="space-y-4 relative z-10" action="{{ route('register') }}" method="POST">
+                <form class="space-y-4 relative z-10" action="{{ route('signup.store') }}" method="POST">
                     @csrf
 
                     <!-- Full Name -->
@@ -123,7 +123,7 @@
             <div class="text-center mt-6 space-y-2">
                 <p class="text-gray-500 text-xs font-light">
                     Already have an account? 
-                    <a href="{{ route('login') }}" class="font-medium text-black hover:text-gray-600 transition-colors duration-200">Sign in here</a>
+                    <a href="{{ route('index.signin') }}" class="font-medium text-black hover:text-gray-600 transition-colors duration-200">Sign in here</a>
                 </p>
                 <p class="text-xs text-gray-400 font-light">Join thousands of writers sharing their creativity</p>
             </div>

@@ -34,7 +34,7 @@
                     class="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-xl"
                 ></div>
 
-                <form class="space-y-4 relative z-10" action="{{ route('login') }}" method="POST">
+                <form class="space-y-4 relative z-10" action="{{ route('authenticate') }}" method="POST">
                     @csrf
 
                     <!-- Username Input -->
@@ -113,7 +113,7 @@
             <div class="text-center mt-6 space-y-2">
                 <p class="text-gray-500 text-xs font-light">
                     Don't have an account?
-                    <a href="{{ route('register') }}" class="font-medium text-black hover:text-gray-600 transition-colors duration-200"
+                    <a href="{{ route('index.signup') }}" class="font-medium text-black hover:text-gray-600 transition-colors duration-200"
                         >Create one here</a
                     >
                 </p>

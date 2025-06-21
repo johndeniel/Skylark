@@ -11,10 +11,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile.
      */
-    public function show()
+    public function index()
     {
         $user = Auth::user();
-        return view('profile.show', compact('user'));
+        return view('profile.index', compact('user'));
     }
 
     /**
