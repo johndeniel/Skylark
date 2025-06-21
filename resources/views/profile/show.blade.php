@@ -20,6 +20,9 @@
         @include('profile.partials.user-info', ['user' => $user])
         
         @include('profile.partials.creative-wall', ['user' => $user])
+
+        @include('profile.partials.upload-photo-modal')
+        @include('profile.partials.edit-profile')
         
         @include('profile.partials.footer')
     </div>

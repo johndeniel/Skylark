@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function index()
     {
-        return view('auth.login');
+        return view('auth.signin');
     }
 
     public function showRegister()
     {
-        return view('auth.register');
+        return view('auth.signup');
     }
 
     public function login(Request $request)
@@ -47,6 +48,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
+            'userid' => (string) Str::uuid(),
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
