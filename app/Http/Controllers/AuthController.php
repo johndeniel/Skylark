@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function signin(): View
     {
-        return view('auth.signin');
+        return view('signin');
     }
 
     /**
@@ -48,7 +48,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             // Regenerate session ID to prevent session fixation attacks
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('thought'));
         }
 
         return back()->withErrors([
@@ -63,7 +63,7 @@ class AuthController extends Controller
      */
     public function signup(): View
     {
-        return view('auth.signup');
+        return view('signup');
     }
 
     /**
@@ -103,7 +103,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Redirect to dashboard with success message
-        return redirect()->route('dashboard')->with('success', __('Registration successful! Welcome aboard.'));
+        return redirect()->route('thought')->with('success', __('Registration successful! Welcome aboard.'));
     }
 
     /**

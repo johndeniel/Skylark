@@ -1,13 +1,13 @@
 <!-- Edit Profile Modal -->
 <div id="editModal" class="fixed inset-0 z-50 hidden">
-    <!-- Overlay -->
+    <!-- Modal Overlay -->
     <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeEditModal()"></div>
     
-    <!-- Modal Container - Properly centered on mobile -->
+    <!-- Modal Content -->
     <div class="fixed inset-0 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
             
-            <!-- Header -->
+            <!-- Modal Header -->
             <div class="flex items-center justify-between p-6 border-b border-gray-100">
                 <h3 class="text-xl font-light">Edit Profile</h3>
                 <button onclick="closeEditModal()" class="p-2 rounded-lg text-gray-500 hover:text-black hover:bg-gray-50 transition-colors">
@@ -15,25 +15,25 @@
                 </button>
             </div>
             
-            <!-- Message Container -->
+            <!-- Status Message Container -->
             <div id="messageContainer" class="hidden px-6 pt-4">
                 <div id="messageText" class="p-3 rounded-lg text-sm"></div>
             </div>
             
-            <!-- Form -->
+            <!-- Profile Form -->
             <form method="POST" action="{{ route('profile.update') }}" id="editProfileForm" class="p-6">
                 @csrf
                 @method('PUT')
                 
                 <div class="space-y-4">
-                    <!-- Name Field -->
+                    <!-- Name Input -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
                         <input type="text" name="name" value="{{ auth()->user()->name ?? '' }}" 
                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent" required>
                     </div>
                     
-                    <!-- Username Field -->
+                    <!-- Username Input -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
                         <div class="relative">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     
-                    <!-- Pronouns Dropdown -->
+                    <!-- Pronouns Selection -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Pronouns</label>
                         <div class="relative">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     
-                    <!-- Bio Textarea -->
+                    <!-- Bio Textarea with Character Counter -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
                         <textarea name="bio" rows="3" maxlength="60" placeholder="Tell us about yourself..." 
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 
-                <!-- Action Buttons -->
+                <!-- Form Actions -->
                 <div class="flex gap-2 sm:gap-3 mt-6">
                     <button type="button" onclick="closeEditModal()" 
                             class="flex-1 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-colors rounded-full">
@@ -88,51 +88,80 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Cache DOM elements
-    const editModal = document.getElementById('editModal');
-    const editProfileForm = document.getElementById('editProfileForm');
-    const bioTextarea = document.querySelector('textarea[name="bio"]');
-    const currentCountSpan = document.getElementById('currentCount');
-    const bioCharCount = document.getElementById('bioCharCount');
-    const messageContainer = document.getElementById('messageContainer');
-    const messageText = document.getElementById('messageText');
-    const saveButton = document.getElementById('saveButton');
-    
-    // Modal Controls
-    window.openEditModal = () => {
-        editModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-        hideMessage();
-    };
-
-    window.closeEditModal = () => {
-        editModal.classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scroll
-        hideMessage();
-    };
-
-    // Bio Character Counter
-    bioTextarea?.addEventListener('input', function() {
-        const length = this.value.length;
-        currentCountSpan.textContent = length;
+class ProfileModal {
+    constructor() {
+        // Initialize DOM element references
+        this.modal = document.getElementById('editModal');
+        this.form = document.getElementById('editProfileForm');
+        this.bioTextarea = document.querySelector('textarea[name="bio"]');
+        this.charCounter = document.getElementById('currentCount');
+        this.charCountDisplay = document.getElementById('bioCharCount');
+        this.messageContainer = document.getElementById('messageContainer');
+        this.messageText = document.getElementById('messageText');
+        this.saveButton = document.getElementById('saveButton');
         
-        // Visual feedback when approaching limit
-        bioCharCount.className = length > 55 ? 'text-xs text-gray-600' : 'text-xs text-gray-400';
-    });
+        this.init();
+    }
 
-    // Form Submission Handler
-    editProfileForm?.addEventListener('submit', async function(e) {
+    init() {
+        this.attachEventListeners();
+        this.setupGlobalMethods();
+    }
+
+    // Attach all event listeners
+    attachEventListeners() {
+        // Bio character counter
+        this.bioTextarea?.addEventListener('input', () => this.updateCharCounter());
+        
+        // Form submission handler
+        this.form?.addEventListener('submit', (e) => this.handleFormSubmit(e));
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+    }
+
+    // Setup global methods for onclick handlers
+    setupGlobalMethods() {
+        window.openEditModal = () => this.open();
+        window.closeEditModal = () => this.close();
+    }
+
+    // Modal visibility controls
+    open() {
+        this.modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        this.hideMessage();
+    }
+
+    close() {
+        this.modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        this.hideMessage();
+    }
+
+    // Bio character counter functionality
+    updateCharCounter() {
+        const length = this.bioTextarea.value.length;
+        this.charCounter.textContent = length;
+        
+        // Visual feedback when approaching character limit
+        this.charCountDisplay.className = length > 55 
+            ? 'text-xs text-gray-600' 
+            : 'text-xs text-gray-400';
+    }
+
+    // Handle form submission with AJAX
+    async handleFormSubmit(e) {
         e.preventDefault();
         
-        // Set loading state
-        saveButton.disabled = true;
-        saveButton.textContent = 'Saving...';
+        this.setLoadingState(true);
         
         try {
-            const response = await fetch(this.action, {
+            const response = await fetch(this.form.action, {
                 method: 'POST',
-                body: new FormData(this),
+                body: new FormData(this.form),
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'application/json',
@@ -142,49 +171,56 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
             
             if (data.success) {
-                showMessage(data.message, 'success');
-                updateProfileDisplay(data.user);
+                this.showMessage(data.message, 'success');
+                this.updateProfileDisplay(data.user);
             } else {
-                showMessage(data.message || 'Update failed', 'error');
+                this.showMessage(data.message || 'Update failed', 'error');
             }
         } catch (error) {
-            showMessage('An error occurred', 'error');
+            this.showMessage('An error occurred', 'error');
         } finally {
-            // Reset button state
-            saveButton.disabled = false;
-            saveButton.textContent = 'Save Changes';
+            this.setLoadingState(false);
         }
-    });
+    }
 
-    // Message Display Functions
-    function showMessage(message, type) {
-        if (!messageContainer || !messageText) return;
+    // Button loading state management
+    setLoadingState(isLoading) {
+        this.saveButton.disabled = isLoading;
+        this.saveButton.textContent = isLoading ? 'Saving...' : 'Save Changes';
+    }
+
+    // Message display system
+    showMessage(message, type) {
+        if (!this.messageContainer || !this.messageText) return;
         
-        messageContainer.classList.remove('hidden');
-        messageText.className = `p-3 rounded-lg text-sm ${
+        this.messageContainer.classList.remove('hidden');
+        this.messageText.className = `p-3 rounded-lg text-sm ${
             type === 'success' 
                 ? 'bg-gray-100 text-black border border-gray-200' 
                 : 'bg-gray-900 text-white'
         }`;
-        messageText.textContent = message;
+        this.messageText.textContent = message;
     }
 
-    function hideMessage() {
-        messageContainer?.classList.add('hidden');
+    hideMessage() {
+        this.messageContainer?.classList.add('hidden');
     }
 
-    // Update Profile Display in UI
-    function updateProfileDisplay(userData) {
-        // Update all elements with user data attributes
-        document.querySelectorAll('[data-user-name]').forEach(el => el.textContent = userData.name);
-        document.querySelectorAll('[data-user-username]').forEach(el => el.textContent = '@' + userData.username);
-        document.querySelectorAll('[data-user-pronoun]').forEach(el => el.textContent = userData.pronoun);
-        document.querySelectorAll('[data-user-bio]').forEach(el => el.textContent = userData.bio || 'No bio yet');
-    }
+    // Update profile data in UI after successful save
+    updateProfileDisplay(userData) {
+        const selectors = {
+            '[data-user-name]': userData.name,
+            '[data-user-username]': '@' + userData.username,
+            '[data-user-pronoun]': userData.pronoun,
+            '[data-user-bio]': userData.bio || 'No bio yet'
+        };
 
-    // Keyboard Controls
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeEditModal();
-    });
-});
+        Object.entries(selectors).forEach(([selector, value]) => {
+            document.querySelectorAll(selector).forEach(el => el.textContent = value);
+        });
+    }
+}
+
+// Initialize modal when DOM is ready
+document.addEventListener('DOMContentLoaded', () => new ProfileModal());
 </script>

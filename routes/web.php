@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ThoughtController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,17 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-// Landing page route - publicly accessible
+// Home route - shows landing page for guests, redirects authenticated users to thought page
 Route::get('/', function () {
-    return view('welcome');
+    return Auth::check() ? redirect()->route('thought') : view('welcome');
 })->name('home');
 
 // Guest-only routes - accessible only to unauthenticated users
 Route::middleware('guest')->group(function () {
     // Sign in routes
-    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');        // Display login form
-    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate'); // Process login attempt
+    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');        // Display sigin form
+    Route::get('/login', [AuthController::class, 'signin'])->name('login');                // Laravel expects this
+    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate'); // Process sigin attempt
     
     // Sign up routes
     Route::get('/signup', [AuthController::class, 'signup'])->name('index.signup');         // Display registration form
@@ -35,12 +37,14 @@ Route::middleware('guest')->group(function () {
 // Protected routes - accessible only to authenticated users
 Route::middleware('auth')->group(function () {
     // Dashboard - main application landing page after login
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+    Route::get('/thought', [ThoughtController::class, 'index'])->name('thought');
+
     // Profile management routes
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');            // Display user profile
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profile
-    
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profil
+
+    Route::get('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
+
     // Authentication - logout functionality
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');               // Process user logout
 });

@@ -13,7 +13,7 @@
 </head>
 <body class="bg-white text-black antialiased font-sans min-h-screen flex flex-col">
 
-    @include('auth.partials.header')
+    @include('partials.header')
 
     <main class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-8">
         <div class="w-full max-w-xs sm:max-w-sm">
@@ -130,7 +130,7 @@
         </div>
     </main>
 
-    @include('auth.partials.footer')
+    @include('partials.footer')
 
     <script>
         function togglePassword(fieldId, iconId) {

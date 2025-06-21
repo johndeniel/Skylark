@@ -14,19 +14,15 @@
 </head>
 <body class="bg-white text-black antialiased font-sans overflow-x-hidden">
     
-    @include('profile.partials.header', ['user' => $user])
+    @include('partials.header-private', ['user' => $user])
     
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        @include('profile.partials.user-info', ['user' => $user])
-        
-        @include('profile.partials.creative-wall', ['user' => $user])
-
-        @include('profile.partials.upload-photo-modal')
-        @include('profile.partials.edit-profile')
-        
-        @include('profile.partials.footer')
+        @include('partials.profile-information', ['user' => $user])
+        @include('partials.profile-creative-wall', ['user' => $user])
+        @include('partials.profile-photo')
+        @include('partials.profile-editor')
     </div>
 
-    @include('profile.partials.scripts')
+    @include('partials.footer')
 </body>
 </html>
