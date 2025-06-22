@@ -37,6 +37,19 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('thoughts', function (Blueprint $table) {
+            $table->id();
+            $table->string('userid');
+            $table->text('content');
+            $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('userid')->references('userid')->on('users')->onDelete('cascade');
+            
+            // Index for better query performance
+            $table->index('userid');
+        });
     }
 
     /**
@@ -47,5 +60,6 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('thoughts');
     }
 };

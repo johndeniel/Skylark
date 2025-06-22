@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Models\Thought;
 
 class ProfileController extends Controller
 {
@@ -14,7 +15,14 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profile', compact('user'));
+        
+        // Fetch the user's thoughts for the creative wall
+        $thoughts = Thought::with('user')
+            ->where('userid', $user->userid)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('profile', compact('user', 'thoughts'));
     }
 
     /**

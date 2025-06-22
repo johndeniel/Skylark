@@ -47,4 +47,12 @@ class User extends AuthenticatableUser
     {
         return $this->userid; 
     }
+
+    /**
+     * Get user's thoughts
+     */
+    public function thoughts()
+    {
+        return $this->hasMany(Thought::class, 'userid', 'userid');
+    }
 }

@@ -18,7 +18,7 @@
     
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         @include('partials.profile-information', ['user' => $user])
-        @include('partials.profile-creative-wall', ['user' => $user])
+        @include('partials.profile-creative-wall', ['user' => $user, 'thoughts' => $thoughts])
         @include('partials.profile-photo')
         @include('partials.profile-editor')
     </div>

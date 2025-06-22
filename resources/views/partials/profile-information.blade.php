@@ -1,7 +1,6 @@
 <!-- Profile Hero Section -->
-<div class="lg:mt-28 flex items-center justify-center pt-20 pb-8 sm:pt-24 sm:pb-16">
-    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        
+<div class="lg:mt-28 pt-20 pb-8 sm:pt-24 sm:pb-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Main Profile Container -->
         <div class="flex flex-col items-center text-center lg:flex-row lg:items-start lg:text-left lg:space-x-12 xl:space-x-16">
             
@@ -70,7 +69,6 @@
                 <!-- Bio Section -->   
                 <section class="mb-6 lg:mb-8">
                     @if($user->bio)
-                        <!-- Bio content with decorative quotes -->
                         <div class="bg-gray-50/50 border border-gray-100 rounded-lg lg:rounded-2xl p-4 md:p-6 lg:p-8">
                             <!-- Top quote decoration -->
                             <div class="flex items-center justify-center lg:justify-start mb-3 lg:mb-4">
@@ -96,7 +94,6 @@
                             </div>
                         </div>
                     @else
-                        <!-- Empty bio state with call-to-action -->
                         <div class="bg-gray-50/50 border border-gray-100 rounded-lg lg:rounded-2xl p-4 md:p-6 lg:p-8 text-center lg:text-left">
                             <i class="fas fa-pen-fancy text-lg lg:text-xl text-gray-300 mb-2 lg:mb-3"></i>
                             <p class="text-gray-400 text-sm lg:text-base font-light mb-2 lg:mb-3">

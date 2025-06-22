@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
     // Dashboard - main application landing page after login
     Route::get('/thought', [ThoughtController::class, 'index'])->name('thought');
 
+    Route::get('/thoughts', [ThoughtController::class, 'index'])->name('thoughts.index');
+    Route::post('/thoughts', [ThoughtController::class, 'store'])->name('thoughts.store');
+
     // Profile management routes
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');            // Display user profile
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profil
