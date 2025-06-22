@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bookmark;
 use App\Models\Thought;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarkController extends Controller
 {
@@ -13,18 +14,30 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        // Ensure user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Please login to view your bookmarks.');
+        }
+
+        // Get only the thoughts that are bookmarked by the current user
+        $userBookmarkIds = auth()->user()->bookmarks()->pluck('thought_id')->toArray();
         
-        // Get all bookmarked thoughts with user information
-        $bookmarkedThoughts = Thought::whereIn('_id', 
-            $user->bookmarks()->pluck('thought_id')
-        )->with('user')->latest()->get();
+        $thoughts = Thought::with(['user', 'bookmarks'])
+            ->whereIn('_id', $userBookmarkIds)
+            ->latest()
+            ->get();
+
+        // Add bookmark status (all will be true since we're only showing bookmarked thoughts)
+        $thoughts->each(function ($thought) {
+            $thought->is_bookmarked_by_user = true;
+            $thought->bookmark_count = $thought->bookmarks->count();
+        });
         
-        return view('bookmark', [
-            'bookmarkedThoughts' => $bookmarkedThoughts,
-            'user' => $user
-        ]);
+        $user = Auth::user();
+
+        return view('bookmark', compact('user', 'thoughts'));
     }
+
 
     /**
      * Toggle bookmark for a thought (add if not bookmarked, remove if bookmarked)

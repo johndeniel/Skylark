@@ -86,9 +86,9 @@
                                         data-thought-id="{{ $thought->_id }}"
                                         data-bookmarked="{{ $thought->is_bookmarked_by_user ? 'true' : 'false' }}"
                                         aria-label="{{ $thought->is_bookmarked_by_user ? 'Remove bookmark' : 'Bookmark this thought' }}">
-                                    <i class="{{ $thought->is_bookmarked_by_user ? 'fas fa-bookmark' : 'far fa-bookmark' }}"></i>
-                                    @if($thought->bookmarks_count > 0)
-                                        <span class="bookmark-count">{{ $thought->bookmarks_count }}</span>
+                                    <i class="{{ $thought->is_bookmarked_by_user ? 'fas fa-bookmark' : 'far fa-bookmark' }}"></i>        
+                                    @if($thought->bookmark_count > 0)
+                                        <span class="bookmark-count">{{ $thought->bookmark_count }}</span>
                                     @endif
                                 </button>
                             @else

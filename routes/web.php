@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/thoughts', [ThoughtController::class, 'store'])->name('thoughts.store');
 
     // Bookmark routes
-    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark');           // Display user's bookmarks
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark');         // Display user's bookmarks
     Route::post('/bookmarks/toggle/{thoughtId}', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle'); // Toggle bookmark
 
     // Profile management routes

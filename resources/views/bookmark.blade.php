@@ -3,240 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="/favicon.ico" />
-    <title>Skylark</title>
+    <title>My Bookmarks - Skylark</title>
     
     @vite('resources/css/app.css')
     
+    <!-- External Dependencies -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white text-black antialiased font-sans overflow-x-hidden">
-  
+    
+    <!-- Header Section -->
     @include('partials.header-private', ['user' => $user])
 
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20">
-        <!-- Content Feed -->
-        <div class="py-8 sm:py-12">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-8 sm:mb-12">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div>
-                            <h2 class="font-display text-2xl xs:text-3xl sm:text-4xl font-light mb-2 leading-tight">
-                                Bookmark
-                            </h2>
-                            <p class="text-gray-500 text-base xs:text-lg font-light">
-                                Latest inspiration from the Skylark community
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feed Items -->
-                <div class="space-y-6 sm:space-y-8">
-                    <!-- Quote Item -->
-                    <article class="group bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 hover:border-gray-200 hover:shadow-xl hover:-translate-y-1">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                                    <span class="text-gray-600 text-sm font-medium">JD</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-medium text-gray-900">John Doe</h3>
-                                    <p class="text-sm text-gray-500">@johndoe • 2 hours ago</p>
-                                </div>
-                            </div>
-                            <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
-                                <i class="fas fa-quote-left mr-1"></i>
-                                Quote
-                            </span>
-                        </div>
+    <!-- Main Content Container -->
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16"> 
+        <!-- Bookmarked Thoughts Section -->
+        <section class="py-8 sm:py-12">
+            <!-- Thoughts Feed -->
+            <div class="space-y-6 sm:space-y-8">
+                @forelse($thoughts as $thought)
+                    <!-- Individual Thought Card -->
+                    <article class="group bg-white border border-gray-100 rounded-3xl p-6 sm:p-10 transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-1">
                         
-                        <blockquote class="text-gray-800 text-lg sm:text-xl leading-relaxed mb-4 font-light italic">
-                            "The best time to plant a tree was 20 years ago. The second best time is now."
+                        <!-- Author Information -->
+                        <header class="flex items-center gap-4 mb-6">
+                            <!-- User Avatar -->
+                            <div class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-inner">
+                                @if($thought->user->photo_url)
+                                    <img src="{{ $thought->user->photo_url }}" 
+                                        alt="{{ $thought->user->name }}" 
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <!-- Fallback initials -->
+                                    <span class="text-gray-600 text-sm font-semibold tracking-wide font-mono">
+                                        {{ strtoupper(substr($thought->user->name, 0, 2)) }}
+                                    </span>
+                                @endif
+                            </div>
+                            
+                            <!-- User Details -->
+                            <div>
+                                <h2 class="font-semibold text-gray-900 text-base sm:text-lg tracking-tight">{{ $thought->user->name }}</h2>
+                                <time class="text-sm text-gray-500">{{ $thought->time_ago }}</time>
+                            </div>
+                        </header>
+
+                        <!-- Thought Content -->
+                        <blockquote class="text-gray-800 text-lg sm:text-xl leading-relaxed mb-6 font-light italic font-[Geist]">
+                            {{ $thought->content }}
                         </blockquote>
                         
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-50">
-                            <div class="flex items-center space-x-6">
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors duration-200">
-                                    <i class="far fa-heart"></i>
-                                    <span class="text-sm">24</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors duration-200">
-                                    <i class="far fa-comment"></i>
-                                    <span class="text-sm">8</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors duration-200">
-                                    <i class="far fa-bookmark"></i>
-                                </button>
-                            </div>
-                        </div>
+                        <!-- Interaction Controls -->
+                        <footer class="flex items-center gap-6">
+                            <!-- Like Button -->
+                            <button class="flex items-center gap-2 text-gray-500 hover:text-red-500 transition-colors duration-200 text-sm font-medium" 
+                                    aria-label="Like this thought">
+                                <i class="far fa-heart"></i>
+                                <span>0</span>
+                            </button>
+                            
+                            <!-- Comment Button -->
+                            <button class="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors duration-200 text-sm font-medium"
+                                    aria-label="Comment on this thought">
+                                <i class="far fa-comment"></i>
+                                <span>0</span>
+                            </button>
+                            
+                            <!-- Bookmark Button (Always bookmarked in this view) -->
+                            <button class="bookmark-btn flex items-center gap-2 transition-colors duration-200 text-sm font-medium text-yellow-500 hover:text-yellow-600"
+                                    data-thought-id="{{ $thought->_id }}"
+                                    data-bookmarked="true"
+                                    aria-label="Remove bookmark">
+                                <i class="fas fa-bookmark"></i>        
+                                @if($thought->bookmark_count > 0)
+                                    <span class="bookmark-count">{{ $thought->bookmark_count }}</span>
+                                @endif
+                            </button>
+                        </footer>
                     </article>
-
-                    <!-- Note Item -->
-                    <article class="group bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 hover:border-gray-200 hover:shadow-xl hover:-translate-y-1">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
-                                    <span class="text-purple-600 text-sm font-medium">AS</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-medium text-gray-900">Alice Smith</h3>
-                                    <p class="text-sm text-gray-500">@alicesmith • 4 hours ago</p>
-                                </div>
-                            </div>
-                            <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-green-50 text-green-700 border border-green-100">
-                                <i class="fas fa-sticky-note mr-1"></i>
-                                Note
-                            </span>
+                @empty
+                    <!-- Empty State -->
+                    <div class="text-center py-12">
+                        <div class="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-bookmark text-gray-400 text-2xl"></i>
                         </div>
-                        
-                        <div class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light">
-                            <h4 class="font-medium mb-2">Thoughts on minimalism</h4>
-                            <p>Sometimes the most powerful statements are made in the spaces between words. The pause, the breath, the moment of silence that follows truth.</p>
-                        </div>
-                        
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-50">
-                            <div class="flex items-center space-x-6">
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors duration-200">
-                                    <i class="fas fa-heart text-red-500"></i>
-                                    <span class="text-sm">42</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors duration-200">
-                                    <i class="far fa-comment"></i>
-                                    <span class="text-sm">15</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors duration-200">
-                                    <i class="far fa-bookmark"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Poem Item -->
-                    <article class="group bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 hover:border-gray-200 hover:shadow-xl hover:-translate-y-1">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                                    <span class="text-amber-600 text-sm font-medium">MB</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-medium text-gray-900">Maya Brown</h3>
-                                    <p class="text-sm text-gray-500">@mayabrown • 6 hours ago</p>
-                                </div>
-                            </div>
-                            <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100">
-                                <i class="fas fa-feather-alt mr-1"></i>
-                                Poem
-                            </span>
-                        </div>
-                        
-                        <div class="text-gray-800 text-base sm:text-lg leading-relaxed mb-4 font-light">
-                            <h4 class="font-medium mb-3">Morning Light</h4>
-                            <div class="italic space-y-2">
-                                <p>Golden rays through window panes,</p>
-                                <p>Dance across the morning dew,</p>
-                                <p>Whispering secrets of the dawn,</p>
-                                <p>As dreams give way to something new.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-50">
-                            <div class="flex items-center space-x-6">
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors duration-200">
-                                    <i class="far fa-heart"></i>
-                                    <span class="text-sm">67</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors duration-200">
-                                    <i class="far fa-comment"></i>
-                                    <span class="text-sm">23</span>
-                                </button>
-                                <button class="flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors duration-200">
-                                    <i class="fas fa-bookmark text-green-500"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Load More -->
-                    <div class="text-center pt-8">
-                        <button class="px-8 py-4 border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-300 rounded-full hover:scale-105 transform tracking-wide">
-                            Load More Stories
-                        </button>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">No bookmarks yet</h3>
+                        <p class="text-gray-500 mb-4">Start bookmarking thoughts that inspire you!</p>
+                        <a href="{{ route('thoughts.index') }}" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-lightbulb"></i>
+                            Browse Thoughts
+                        </a>
                     </div>
-                </div>
+                @endforelse
             </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="flex items-center justify-between border-t border-gray-200 bg-white p-4 text-sm text-gray-600 md:p-6 lg:p-8 mt-16">
-            <div class="flex-1">
-                Follow me on 
-                <a href="https://www.instagram.com/johndeniel_" 
-                   target="_blank" 
-                   rel="noreferrer" 
-                   class="font-medium text-black hover:text-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2" 
-                   aria-label="Follow johndeniel on Instagram">
-                    Instagram
-                </a>
-            </div>
-            
-            <div>
-                <a href="https://github.com/johndeniel" 
-                   target="_blank" 
-                   rel="noreferrer" 
-                   class="inline-flex items-center justify-center rounded-full p-2 text-gray-500 transition-colors duration-200 ease-in-out hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2" 
-                   aria-label="Visit John Deniel's GitHub profile">
-                    <i class="fab fa-github text-lg"></i>
-                </a>
-            </div>
-        </footer>
-    </div>
-
+        </section>
+    </main>
+    
+    <!-- Footer Section -->
+    @include('partials.footer')
+    
+    <!-- Bookmark JavaScript (same as original) -->
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get CSRF token
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                setTimeout(() => {
-                    mobileMenuPanel.classList.remove('translate-x-full');
-                }, 10);
-            } else {
-                mobileMenuPanel.classList.add('translate-x-full');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuPanel = document.getElementById('mobileMenuPanel');
-            
-            if (!mobileMenu.classList.contains('hidden') && 
-                !mobileMenuPanel.contains(event.target) && 
-                !event.target.closest('[onclick="toggleMobileMenu()"]')) {
-                toggleMobileMenu();
-            }
-        });
-
-        // Filter functionality
-        document.querySelectorAll('.flex.items-center.bg-gray-50 button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active state from all buttons
-                document.querySelectorAll('.flex.items-center.bg-gray-50 button').forEach(btn => {
-                    btn.classList.remove('bg-white', 'text-black', 'shadow-sm', 'border-gray-200');
-                    btn.classList.add('text-gray-600');
-                });
-                
-                // Add active state to clicked button
-                this.classList.add('bg-white', 'text-black', 'shadow-sm', 'border-gray-200', 'border');
-                this.classList.remove('text-gray-600');
+            // Handle bookmark toggle
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.bookmark-btn')) {
+                    e.preventDefault();
+                    
+                    const button = e.target.closest('.bookmark-btn');
+                    const thoughtId = button.dataset.thoughtId;
+                    const isBookmarked = button.dataset.bookmarked === 'true';
+                    
+                    // Disable button during request
+                    button.disabled = true;
+                    button.style.opacity = '0.6';
+                    
+                    // Make AJAX request
+                    fetch(`/bookmarks/toggle/${thoughtId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data.bookmarked) {
+                            // If unbookmarked, remove the card from view with animation
+                            const article = button.closest('article');
+                            article.style.transform = 'translateX(-100%)';
+                            article.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                article.remove();
+                                
+                                // Check if no thoughts left
+                                const thoughtsContainer = document.querySelector('.space-y-6');
+                                if (thoughtsContainer.children.length === 0) {
+                                    location.reload(); // Reload to show empty state
+                                }
+                            }, 300);
+                        }
+                        
+                        // Show success message
+                        if (data.message) {
+                            showToast(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showToast('An error occurred. Please try again.', 'error');
+                    })
+                    .finally(() => {
+                        // Re-enable button
+                        button.disabled = false;
+                        button.style.opacity = '1';
+                    });
+                }
             });
+            
+            // Simple toast notification function
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg text-white font-medium z-50 transform transition-all duration-300 ${
+                    type === 'error' ? 'bg-red-500' : 'bg-green-500'
+                }`;
+                toast.textContent = message;
+                
+                document.body.appendChild(toast);
+                
+                // Animate in
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(0)';
+                }, 10);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 3000);
+            }
         });
     </script>
+    
 </body>
 </html>
