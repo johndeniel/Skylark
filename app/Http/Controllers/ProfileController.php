@@ -16,11 +16,19 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         
-        // Fetch the user's thoughts for the creative wall
-        $thoughts = Thought::with('user')
+        // Fetch the user's thoughts for the creative wall with bookmark information
+        $thoughts = Thought::with(['user', 'bookmarks'])
             ->where('userid', $user->userid)
             ->orderBy('created_at', 'desc')
             ->get();
+        
+        // Add bookmark status for each thought
+        $userBookmarks = $user->bookmarks()->pluck('thought_id')->toArray();
+        
+        $thoughts->each(function ($thought) use ($userBookmarks) {
+            $thought->is_bookmarked_by_user = in_array($thought->_id, $userBookmarks);
+            $thought->bookmark_count = $thought->bookmarks->count();
+        });
         
         return view('profile', compact('user', 'thoughts'));
     }
