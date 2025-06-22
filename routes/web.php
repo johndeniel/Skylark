@@ -25,9 +25,9 @@ Route::get('/', function () {
 // Guest-only routes - accessible only to unauthenticated users
 Route::middleware('guest')->group(function () {
     // Sign in routes
-    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');        // Display sigin form
+    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');        // Display signin form
     Route::get('/login', [AuthController::class, 'signin'])->name('login');                // Laravel expects this
-    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate'); // Process sigin attempt
+    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate'); // Process signin attempt
     
     // Sign up routes
     Route::get('/signup', [AuthController::class, 'signup'])->name('index.signup');         // Display registration form
@@ -39,14 +39,17 @@ Route::middleware('auth')->group(function () {
     // Dashboard - main application landing page after login
     Route::get('/thought', [ThoughtController::class, 'index'])->name('thought');
 
+    // Thought management routes
     Route::get('/thoughts', [ThoughtController::class, 'index'])->name('thoughts.index');
     Route::post('/thoughts', [ThoughtController::class, 'store'])->name('thoughts.store');
 
+    // Bookmark routes
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark');           // Display user's bookmarks
+    Route::post('/bookmarks/toggle/{thoughtId}', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle'); // Toggle bookmark
+
     // Profile management routes
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');            // Display user profile
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profil
-
-    Route::get('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profile
 
     // Authentication - logout functionality
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');               // Process user logout

@@ -9,18 +9,31 @@ use Illuminate\Support\Facades\Auth;
 class ThoughtController extends Controller
 {
     /**
-     * Display all thoughts
+     * Display all thoughts with bookmark status
      */
     public function index()
     {
-
+        // Get all thoughts with user and bookmark information
+        $thoughts = Thought::with(['user', 'bookmarks'])->latest()->get();
+        
+        // Add bookmark status for each thought if user is authenticated
+        if (auth()->check()) {
+            $userBookmarks = auth()->user()->bookmarks()->pluck('thought_id')->toArray();
+            
+            $thoughts->each(function ($thought) use ($userBookmarks) {
+                $thought->is_bookmarked_by_user = in_array($thought->_id, $userBookmarks);
+                $thought->bookmark_count = $thought->bookmarks->count();
+            });
+        } else {
+            $thoughts->each(function ($thought) {
+                $thought->is_bookmarked_by_user = false;
+                $thought->bookmark_count = $thought->bookmarks->count();
+            });
+        }
+        
         $user = Auth::user();
 
-        $thoughts = Thought::with('user') 
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return view('thought', compact('thoughts'),  compact('user'));
+        return view('thought', compact('user', 'thoughts'));
     }
 
     /**
@@ -29,14 +42,14 @@ class ThoughtController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => 'required|string|max:2000',
+            'content' => 'required|max:280'
         ]);
 
         Thought::create([
-            'userid' => Auth::user()->userid,
-            'content' => $request->content,
+            'userid' => auth()->user()->userid,
+            'content' => $request->content
         ]);
 
-        return redirect()->back()->with('success', 'Thought posted successfully!');
+        return redirect()->route('thoughts.index')->with('success', 'Thought posted successfully!');
     }
 }

@@ -50,6 +50,24 @@ return new class extends Migration
             // Index for better query performance
             $table->index('userid');
         });
+
+        Schema::create('bookmarks', function (Blueprint $table) {
+            $table->id();
+            $table->string('userid');
+            $table->unsignedBigInteger('thought_id');
+            $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('userid')->references('userid')->on('users')->onDelete('cascade');
+            $table->foreign('thought_id')->references('id')->on('thoughts')->onDelete('cascade');
+            
+            // Unique constraint to prevent duplicate bookmarks
+            $table->unique(['userid', 'thought_id']);
+            
+            // Indexes for better query performance
+            $table->index('userid');
+            $table->index('thought_id');
+        });
     }
 
     /**
@@ -61,5 +79,6 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
         Schema::dropIfExists('thoughts');
+        Schema::dropIfExists('bookmarks');
     }
 };
