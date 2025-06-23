@@ -13,8 +13,8 @@ class ThoughtController extends Controller
      */
     public function index()
     {
-        // Get all thoughts with user and bookmark information
-        $thoughts = Thought::with(['user', 'bookmarks'])->latest()->get();
+        // Get all thoughts with user information
+        $thoughts = Thought::with('user')->latest()->get();
         
         // Add bookmark status for each thought if user is authenticated
         if (auth()->check()) {

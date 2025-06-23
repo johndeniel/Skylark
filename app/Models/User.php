@@ -65,14 +65,6 @@ class User extends AuthenticatableUser
     }
 
     /**
-     * Get bookmarked thoughts
-     */
-    public function bookmarkedThoughts()
-    {
-        return $this->belongsToMany(Thought::class, null, 'userid', 'thought_id', 'userid', '_id', 'bookmarks');
-    }
-
-    /**
      * Check if user has bookmarked a thought
      */
     public function hasBookmarked($thoughtId): bool

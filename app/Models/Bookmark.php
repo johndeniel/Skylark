@@ -22,8 +22,6 @@ class Bookmark extends Model
         'updated_at' => 'datetime',
     ];
 
-    protected $appends = ['bookmark_count'];
-
     /**
      * Get the user who bookmarked
      */
@@ -38,24 +36,5 @@ class Bookmark extends Model
     public function thought()
     {
         return $this->belongsTo(Thought::class, 'thought_id', '_id');
-    }
-
-    /**
-     * Get the bookmark count for this thought
-     */
-    public function getBookmarkCountAttribute()
-    {
-        return static::where('thought_id', $this->thought_id)->count();
-    }
-
-    /**
-     * Scope to get bookmark counts for multiple thoughts efficiently
-     */
-    public function scopeWithBookmarkCounts($query, $thoughtIds = null)
-    {
-        if ($thoughtIds) {
-            return $query->whereIn('thought_id', $thoughtIds);
-        }
-        return $query;
     }
 }

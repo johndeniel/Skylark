@@ -14,11 +14,6 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        // Ensure user is authenticated
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Please login to view your bookmarks.');
-        }
-
         // Get only the thoughts that are bookmarked by the current user
         $userBookmarkIds = auth()->user()->bookmarks()->pluck('thought_id')->toArray();
         
