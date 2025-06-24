@@ -130,8 +130,6 @@
         </div>
     </main>
 
-    @include('partials.footer')
-
     <script>
         function togglePassword(fieldId, iconId) {
             const field = document.getElementById(fieldId);

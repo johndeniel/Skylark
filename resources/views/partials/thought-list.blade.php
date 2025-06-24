@@ -33,21 +33,7 @@
             </blockquote>
             
             <!-- Action Bar -->
-            <footer class="flex items-center gap-6">
-                <!-- Like Button -->
-                <button class="flex items-center gap-2 text-gray-500 hover:text-red-500 transition-colors duration-200 text-sm font-medium" 
-                        aria-label="Like this thought">
-                    <i class="far fa-heart"></i>
-                    <span>0</span>
-                </button>
-                
-                <!-- Comment Button -->
-                <button class="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors duration-200 text-sm font-medium"
-                        aria-label="Comment on this thought">
-                    <i class="far fa-comment"></i>
-                    <span>0</span>
-                </button>
-                
+            <footer class="flex items-center gap-6">   
                 <!-- Bookmark Button -->
                 <button class="bookmark-btn flex items-center gap-2 transition-colors duration-200 text-sm font-medium {{ $thought->is_bookmarked_by_user ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-500 hover:text-yellow-500' }}"
                         data-thought-id="{{ $thought->_id }}"

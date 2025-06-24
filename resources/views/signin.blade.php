@@ -122,8 +122,6 @@
         </div>
     </main>
 
-    @include('partials.footer')
-
     <script>
         function togglePassword() {
             const field = document.getElementById("password");

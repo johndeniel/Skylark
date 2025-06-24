@@ -220,28 +220,4 @@ class ThoughtController extends Controller
             return redirect()->back()->with('error', 'Failed to delete thought. Please try again.');
         }
     }
-
-    /**
-     * Show a specific thought (optional - for individual thought pages)
-     */
-    public function show($thoughtId)
-    {
-        try {
-            $thought = Thought::with('user')->findOrFail($thoughtId);
-            
-            // Add bookmark status if user is authenticated
-            if (auth()->check()) {
-                $thought->is_bookmarked_by_user = auth()->user()->hasBookmarked($thoughtId);
-            } else {
-                $thought->is_bookmarked_by_user = false;
-            }
-            
-            $thought->bookmark_count = $thought->bookmarks->count();
-            
-            return view('thought.show', compact('thought'));
-            
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect()->route('thoughts.index')->with('error', 'Thought not found.');
-        }
-    }
 }
