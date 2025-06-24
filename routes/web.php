@@ -10,11 +10,6 @@ use App\Http\Controllers\ThoughtController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group.
-|
 */
 
 // Home route - shows landing page for guests, redirects authenticated users to thought page
@@ -25,13 +20,13 @@ Route::get('/', function () {
 // Guest-only routes - accessible only to unauthenticated users
 Route::middleware('guest')->group(function () {
     // Sign in routes
-    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');        // Display signin form
-    Route::get('/login', [AuthController::class, 'signin'])->name('login');                // Laravel expects this
-    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate'); // Process signin attempt
+    Route::get('/signin', [AuthController::class, 'signin'])->name('index.signin');
+    Route::get('/login', [AuthController::class, 'signin'])->name('login');
+    Route::post('/signin', [AuthController::class, 'authenticate'])->name('authenticate');
     
     // Sign up routes
-    Route::get('/signup', [AuthController::class, 'signup'])->name('index.signup');         // Display registration form
-    Route::post('/signup', [AuthController::class, 'store'])->name('signup.store');         // Process new user registration
+    Route::get('/signup', [AuthController::class, 'signup'])->name('index.signup');
+    Route::post('/signup', [AuthController::class, 'store'])->name('signup.store');
 });
 
 // Protected routes - accessible only to authenticated users
@@ -42,15 +37,17 @@ Route::middleware('auth')->group(function () {
     // Thought management routes
     Route::get('/thoughts', [ThoughtController::class, 'index'])->name('thoughts.index');
     Route::post('/thoughts', [ThoughtController::class, 'store'])->name('thoughts.store');
+    Route::put('/thoughts/{thoughtId}', [ThoughtController::class, 'update'])->name('thoughts.update');
+    Route::delete('/thoughts/{thoughtId}', [ThoughtController::class, 'destroy'])->name('thoughts.destroy');
 
     // Bookmark routes
-    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark');         // Display user's bookmarks
-    Route::post('/bookmarks/toggle/{thoughtId}', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle'); // Toggle bookmark
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark');
+    Route::post('/bookmarks/toggle/{thoughtId}', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle');
 
     // Profile management routes
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');            // Display user profile
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');    // Update user profile
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Authentication - logout functionality
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');               // Process user logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

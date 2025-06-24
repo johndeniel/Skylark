@@ -21,9 +21,9 @@
     <main class="flex-grow">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             @include('partials.profile-information', ['user' => $user])
-            
-            <div class="lg:mb-12 mb-6">
-                <div class="flex flex-col">
+    
+             <section class="py-8">
+               <div class="flex flex-col lg:mb-8 mb-4">
                     <div>
                         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-light lg:mb-2 leading-tight tracking-tight">
                             Creative Wall
@@ -33,10 +33,11 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-            @include('partials.thought-list', ['thoughts' => $thoughts])
-            @include('partials.thought-creation', ['user' => $user])
+                <!-- Thoughts List -->
+                @include('partials.thought-list', ['thoughts' => $thoughts])
+                @include('partials.thought-creation', ['user' => $user])
+            </section>
         </div>
     </main>
 
