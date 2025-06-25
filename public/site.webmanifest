@@ -1,0 +1,35 @@
+{
+  "name": "John Deniel Dela Peña Portfolio",
+  "short_name": "JD Portfolio",
+  "description": "A professional portfolio showcasing maintainable projects, clean code principles, and innovative software development solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#1a202c",
+  "scope": "/",
+  "categories": [
+    "portfolio",
+    "software",
+    "developer",
+    "web",
+    "devops",
+    "backend",
+    "backend engineer",
+    "frontend",
+    "mobile",
+    "mobile developer",
+    "fullstack",
+    "programming",
+    "technology",
+    "engineering"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/ico",
+      "purpose": "any maskable"
+    }
+  ]
+}

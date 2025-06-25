@@ -1,2 +1,34 @@
+# robots.txt for Skylark
+# For more info: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+# --- Default Rules for All User-Agents ---
+# The asterisk (*) is a wildcard that applies the following rules to all web crawlers.
 User-agent: *
-Disallow:
+
+# Allow crawling of all content on the site.
+# This is explicitly stated for clarity, though it's the default behavior if nothing is disallowed.
+Allow: /
+
+# --- Disallow Rules (Optional, uncomment and modify if needed) ---
+# If you ever have directories or files you absolutely do NOT want search engines to crawl/index,
+# you would list them here. For a creative writing platform, this section is often empty or commented out.
+# Example:
+# Disallow: /admin/             # Blocks crawlers from the /admin/ directory
+# Disallow: /private-docs/      # Blocks crawlers from /private-docs/
+# Disallow: /temp-files/        # Blocks crawlers from /temp-files/
+# Disallow: /*.zip$             # Blocks crawling of all .zip files
+# Disallow: /*?                 # Disallows URLs with query parameters (useful if you have many auto-generated URLs)
+
+# --- Sitemap Location ---
+# Specify the location of your sitemap.xml file.
+# This helps search engines discover all the pages on your site.
+# Replace with the actual path to your sitemap if you have one.
+# You will need to generate a sitemap.xml file separately if you don't have one already.
+Sitemap: https://skylark-one.vercel.app/sitemap.xml
+
+# --- Crawl-delay (Optional, for specific user-agents) ---
+# Some older bots or less sophisticated ones might benefit from a crawl-delay.
+# Modern search engines like Google largely ignore this directive in robots.txt and manage
+# their crawl rate dynamically. Only use if you're experiencing server strain from specific bots.
+# User-agent: ASpecificBotName
+# Crawl-delay: 10 # Waits 10 seconds between requests
