@@ -6,15 +6,15 @@
     <title>Skylark</title>
     
     <!-- Primary Meta Tags -->
-    <meta name="description" content="Open canvas for quotes, notes, and poems. A great source of inspiration for expressive and creative writing" />
+    <meta name="description" content="A soft corner of the world where words bloom in silence" />
     <meta name="author" content="John Deniel Dela Peña" />
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content="Skylark, quotes, notes, poems, creative writing, inspiration, expressive writing, writing canvas, poetry, journaling, creative expression, writing tools, digital notebook" />
     <meta name="theme-color" content="#1a202c" /> 
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Skylark – Open Canvas for Creative Writing" />
-    <meta property="og:description" content="Open canvas for quotes, notes, and poems. A great source of inspiration for expressive and creative writing" />
+    <meta property="og:title" content="Open Canvas for Creative Writing" />
+    <meta property="og:description" content="A soft corner of the world where words bloom in silence" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skylark-one.vercel.app" />
     <meta property="og:image" content="https://skylark-one.vercel.app/opengraph-image.png" />
@@ -26,8 +26,8 @@
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Skylark – Open Canvas for Creative Writing" />
-    <meta name="twitter:description" content="Open canvas for quotes, notes, and poems. A great source of inspiration for expressive and creative writing" />
+    <meta name="twitter:title" content="Open Canvas for Creative Writing" />
+    <meta name="twitter:description" content="A soft corner of the world where words bloom in silence" />
     <meta name="twitter:image" content="https://skylark-one.vercel.app/opengraph-image.png" />
     <meta name="twitter:image:alt" content="Skylark - Your open canvas for quotes, notes, and poems" />
     <meta name="twitter:creator" content="@YourTwitterHandle" /> 
@@ -45,7 +45,7 @@
       "@type": "WebSite",
       "name": "Skylark",
       "url": "https://skylark-one.vercel.app",
-      "description": "Open canvas for quotes, notes, and poems. A great source of inspiration for expressive and creative writing",
+      "description": "A soft corner of the world where words bloom in silence",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://skylark-one.vercel.app/?q={search_term_string}",

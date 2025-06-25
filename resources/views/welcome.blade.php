@@ -85,108 +85,113 @@
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
                 <div class="text-center mb-12 sm:mb-20">
-                    <div class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium bg-gray-50 text-gray-700 mb-6 sm:mb-8 border border-gray-100 tracking-widest">
-                        <i class="fas fa-quote-left mr-2 text-gray-500"></i>
-                        <span class="hidden xs:inline">INSPIRATION GALLERY</span>
-                        <span class="xs:hidden">INSPIRATION</span>
+                    <div class="inline-flex items-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gray-50 text-gray-700 mb-6 sm:mb-8 border border-gray-200 tracking-widest shadow-sm">
+                        <i class="fas fa-quote-left mr-2 text-gray-500 text-xs sm:text-sm"></i>
+                        <span class="hidden sm:inline">INSPIRATION GALLERY</span>
+                        <span class="sm:hidden">INSPIRATION</span>
                     </div>
-                    <h2 class="font-display text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 leading-tight px-4 sm:px-0">
+                    <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 leading-tight text-black">
                         Find your inspiration
                     </h2>
-                    <p class="text-gray-500 text-base xs:text-lg sm:text-xl max-w-3xl mx-auto font-light leading-relaxed px-4 sm:px-0">
-                        Discover timeless wisdom and contemporary thoughts that spark creativity and ignite the imagination within every writer's soul.
+                    <p class="text-gray-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed">
+                        Discover timeless wisdom from great minds that spark creativity and ignite the imagination within every writer's soul.
                     </p>
                 </div>
 
                 <!-- Quote Cards Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Quote Card Template (repeated 6 times with different content) -->
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Quote Card 1 - Plato -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "The scariest moment is always just before you start."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "The beginning is the most important part of the work."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — Stephen King
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Plato
                             </cite>
                         </div>
                     </div>
 
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                    <!-- Quote Card 2 - Einstein -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "Words have no single fixed meaning, and that is why the art of poetry is possible."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "Imagination is more important than knowledge."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — Terry Eagleton
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Albert Einstein
                             </cite>
                         </div>
                     </div>
 
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                    <!-- Quote Card 3 - Aristotle -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "Fill your paper with the breathings of your heart."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "Well begun is half done."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — William Wordsworth
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Aristotle
                             </cite>
                         </div>
                     </div>
 
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                    <!-- Quote Card 4 - Socrates -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "A writer is someone for whom writing is more difficult than it is for other people."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "The only true wisdom is in knowing you know nothing."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — Thomas Mann
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Socrates
                             </cite>
                         </div>
                     </div>
 
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                    <!-- Quote Card 5 - Leonardo da Vinci -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "Poetry is when an emotion has found its thought and the thought has found words."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "Simplicity is the ultimate sophistication."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — Robert Frost
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Leonardo da Vinci
                             </cite>
                         </div>
                     </div>
 
-                    <div class="group bg-white border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-200 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden mx-2 sm:mx-0">
-                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50/50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
+                    <!-- Quote Card 6 - Marcus Aurelius -->
+                    <div class="group bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:border-gray-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-2xl sm:rounded-bl-3xl"></div>
                         <div class="relative z-10">
                             <div class="mb-4 sm:mb-6">
-                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300"></i>
+                                <i class="fas fa-quote-left text-2xl sm:text-3xl text-gray-300 group-hover:text-gray-400 transition-colors duration-300"></i>
                             </div>
-                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light italic">
-                                "The role of a writer is not to say what we can all say, but what we are unable to say."
+                            <blockquote class="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-4 sm:mb-6 font-light">
+                                "Very little is needed to make a happy life; it is all within yourself, in your way of thinking."
                             </blockquote>
-                            <cite class="text-gray-500 text-xs sm:text-sm font-medium not-italic tracking-widest uppercase">
-                                — Anaïs Nin
+                            <cite class="text-gray-500 text-sm font-semibold not-italic tracking-wider uppercase">
+                                — Marcus Aurelius
                             </cite>
                         </div>
                     </div>
