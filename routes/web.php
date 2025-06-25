@@ -47,7 +47,8 @@ Route::middleware('auth')->group(function () {
     // Profile management routes
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
+    Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.upload-photo');
+    
     // Authentication - logout functionality
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -155,9 +155,9 @@ class ProfileModal {
     // Handle form submission with AJAX
     async handleFormSubmit(e) {
         e.preventDefault();
-        
+
         this.setLoadingState(true);
-        
+
         try {
             const response = await fetch(this.form.action, {
                 method: 'POST',
@@ -167,12 +167,17 @@ class ProfileModal {
                     'Accept': 'application/json',
                 }
             });
-            
+
             const data = await response.json();
-            
+
             if (data.success) {
                 this.showMessage(data.message, 'success');
                 this.updateProfileDisplay(data.user);
+
+                // 🔄 Refresh the page after a short delay (optional UX improvement)
+                setTimeout(() => {
+                    location.reload();
+                }, 1000); // 1-second delay to show the message
             } else {
                 this.showMessage(data.message || 'Update failed', 'error');
             }
@@ -182,6 +187,7 @@ class ProfileModal {
             this.setLoadingState(false);
         }
     }
+
 
     // Button loading state management
     setLoadingState(isLoading) {

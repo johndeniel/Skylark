@@ -36,12 +36,20 @@
                         class="flex-1 px-3 py-2 border border-gray-300 text-black rounded-full text-sm font-display font-light hover:border-black hover:bg-gray-100 transition">
                     Cancel
                 </button>
-                <button type="submit"
-                        class="flex-1 px-3 py-2 bg-black text-white rounded-full text-sm font-display font-light hover:bg-gray-800 transition">
-                    Upload
+                <button type="submit" id="uploadBtn"
+                        class="flex-1 px-3 py-2 bg-black text-white rounded-full text-sm font-display font-light hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span class="upload-text">Upload</span>
+                    <span class="upload-loading hidden">
+                        <i class="fas fa-spinner fa-spin mr-1"></i>Uploading...
+                    </span>
                 </button>
             </div>
         </form>
+
+        <!-- Error/Success Messages -->
+        <div id="uploadMessage" class="mt-4 hidden">
+            <div class="p-3 rounded-lg text-sm"></div>
+        </div>
     </div>
 </div>
 
@@ -53,13 +61,59 @@
     window.openPhotoModal = () => {
         photoModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        // Reset form and messages
+        document.getElementById('photoUploadForm').reset();
+        hideMessage();
     };
 
     // Close modal and restore scroll
     window.closePhotoModal = () => {
         photoModal.classList.add('hidden');
         document.body.style.overflow = '';
+        resetUploadButton();
     };
+
+    // Show message function
+    function showMessage(message, type = 'success') {
+        const messageEl = document.getElementById('uploadMessage');
+        const messageContent = messageEl.querySelector('div');
+        
+        messageContent.textContent = message;
+        messageContent.className = `p-3 rounded-lg text-sm ${
+            type === 'success' 
+                ? 'bg-green-100 text-green-800 border border-green-200' 
+                : 'bg-red-100 text-red-800 border border-red-200'
+        }`;
+        
+        messageEl.classList.remove('hidden');
+    }
+
+    // Hide message function
+    function hideMessage() {
+        document.getElementById('uploadMessage').classList.add('hidden');
+    }
+
+    // Reset upload button
+    function resetUploadButton() {
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadText = uploadBtn.querySelector('.upload-text');
+        const uploadLoading = uploadBtn.querySelector('.upload-loading');
+        
+        uploadBtn.disabled = false;
+        uploadText.classList.remove('hidden');
+        uploadLoading.classList.add('hidden');
+    }
+
+    // Set loading state
+    function setLoadingState() {
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadText = uploadBtn.querySelector('.upload-text');
+        const uploadLoading = uploadBtn.querySelector('.upload-loading');
+        
+        uploadBtn.disabled = true;
+        uploadText.classList.add('hidden');
+        uploadLoading.classList.remove('hidden');
+    }
 
     // Initialize modal functionality
     document.addEventListener('DOMContentLoaded', () => {
@@ -67,27 +121,75 @@
         const input = document.getElementById('photoInput');
 
         // Handle form submission
-        form.addEventListener('submit', e => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const file = input.files[0];
             
             // File validation
-            if (!file) return alert('Please select a photo to upload');
-            if (!file.type.startsWith('image/')) return alert('Please select a valid image file');
-            if (file.size > 5 * 1024 * 1024) return alert('Image must be less than 5MB');
-
-            // Prepare form data
-            const formData = new FormData(form);
+            if (!file) {
+                showMessage('Please select a photo to upload', 'error');
+                return;
+            }
             
-            // Add CSRF token
-            const token = document.querySelector('meta[name="csrf-token"]')?.content || 
-                         document.querySelector('input[name="_token"]')?.value;
-            if (token) formData.append('_token', token);
+            if (!file.type.startsWith('image/')) {
+                showMessage('Please select a valid image file', 'error');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                showMessage('Image must be less than 5MB', 'error');
+                return;
+            }
 
-            // TODO: Replace with actual upload API call
-            alert('Photo uploaded successfully');
-            closePhotoModal();
+            // Show loading state
+            setLoadingState();
+            hideMessage();
+
+            try {
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Make API call
+                const response = await fetch('{{ route("profile.upload-photo") }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage(data.message, 'success');
+                    
+                    // Update profile photo in the UI if it exists
+                    const profilePhoto = document.querySelector('.profile-photo, [data-profile-photo]');
+                    if (profilePhoto) {
+                        if (profilePhoto.tagName === 'IMG') {
+                            profilePhoto.src = data.photo_url;
+                        } else {
+                            profilePhoto.style.backgroundImage = `url('${data.photo_url}')`;
+                        }
+                    }
+                    
+                    // Refresh the page after a short delay to reflect changes
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                    
+                } else {
+                    showMessage(data.message || 'Upload failed', 'error');
+                }
+
+            } catch (error) {
+                console.error('Upload error:', error);
+                showMessage('Network error. Please try again.', 'error');
+            } finally {
+                resetUploadButton();
+            }
         });
 
         // Close modal on ESC key
